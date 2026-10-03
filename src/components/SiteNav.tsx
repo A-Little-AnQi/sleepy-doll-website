@@ -177,7 +177,7 @@ export function SiteNav() {
         id="nav-overlay"
         className={`nav-overlay ${mobileOpen ? 'nav-overlay--open' : ''}`}
         aria-hidden={!mobileOpen}
-        {...(mobileOpen ? {} : { inert: '' as never })}
+        inert={!mobileOpen}
       >
         <nav className="nav-overlay__menu" aria-label="页面目录">
           {navEntries.map((entry, i) => (
