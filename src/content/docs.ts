@@ -1,7 +1,4 @@
-/**
- * 站内文档：与应用内「使用说明与更新」窗口同源的三篇——
- * 使用说明、常见问题、更新日志。内部技术文档不对外发布。
- */
+/** 官网使用说明、常见问题、更新日志与开发计划。 */
 
 import guide from './docs/guide.md?raw';
 import faq from './docs/faq.md?raw';
