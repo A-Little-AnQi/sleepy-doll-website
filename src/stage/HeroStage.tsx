@@ -8,7 +8,7 @@ import { StaticStory } from './StaticStory';
 /**
  * 主叙事舞台：滚动容器 + position:sticky 整屏舞台。
  * 进度由 motion 的 useScroll 归一化，ThreeHelixStage 阻尼后回写 damped，
- * 标题层与 3D 逐帧同步。手机(≤760px)容器 15000px，桌面约 20 屏滚动跨度。
+ * 标题层与 3D 逐帧同步。手机约七屏，桌面六屏滚动，加上初始画面。
  */
 export function HeroStage() {
   const reducedMotion = usePrefersReducedMotion();
@@ -23,10 +23,9 @@ export function HeroStage() {
     if (reducedMotion) return;
     const container = containerRef.current!;
     // 部分嵌入式 WebView 会把数值超过 100 的视口单位压缩，高度由 JS 按像素显式设置。
-    // 桌面跨度约 9 屏（滚轮全程约 80 格），手机 10000px。
+    // 三个展示场景各保留阅读停顿，缩短过场。
     const applyHeight = () => {
-      const mobile = window.innerWidth <= 760;
-      container.style.height = mobile ? '10000px' : `${Math.round(window.innerHeight * 10)}px`;
+      container.style.height = `${Math.round(window.innerHeight * 7)}px`;
     };
     applyHeight();
     window.addEventListener('resize', applyHeight);

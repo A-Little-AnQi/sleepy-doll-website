@@ -13,8 +13,8 @@ export interface DocEntry {
 }
 
 export const docEntries: DocEntry[] = [
-  { key: 'guide', title: '使用说明', description: '添加模型、连接 BetterGI，再试一次查询。', source: guide },
-  { key: 'faq', title: '常见问题', description: '模型、连接、任务和更新的常见问题。', source: faq },
-  { key: 'changelog', title: '更新日志', description: '已发布的内容和下一版的安排。', source: changelog },
-  { key: 'developer', title: '开发者的话', description: '为什么先发测试版，以及接下来准备做什么。', source: developer },
+  { key: 'guide', title: '使用说明', description: '添加模型与连接 BetterGI。', source: guide },
+  { key: 'faq', title: '常见问题', description: '连接、任务和用户数据。', source: faq },
+  { key: 'changelog', title: '更新日志', description: '版本变化与历史发布。', source: changelog },
+  { key: 'developer', title: '开发者的话', description: '试用说明与后续安排。', source: developer },
 ];

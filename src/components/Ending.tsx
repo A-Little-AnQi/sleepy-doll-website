@@ -8,6 +8,14 @@ export function Ending() {
   const { release } = useRelease();
   return (
     <>
+      <section className="pillars">
+        {pillars.map((p) => (
+          <div key={p.id} id={p.id} className="pillars__col">
+            <h3 className="pillars__title">{p.title}</h3>
+            <p className="pillars__note">{p.note}</p>
+          </div>
+        ))}
+      </section>
       <section id="download" className="ending">
         <div className="ending__inner">
           <img
@@ -27,14 +35,7 @@ export function Ending() {
           <p className="download-links"><a href={releasesUrl} target="_blank" rel="noreferrer">GitHub 备用下载 ↗</a> · <a href="#/docs/guide">使用说明</a> · <a href="#/docs/developer">开发者的话</a></p>
         </div>
       </section>
-      <section className="pillars">
-        {pillars.map((p) => (
-          <div key={p.id} id={p.id} className="pillars__col">
-            <h3 className="pillars__title">{p.title}</h3>
-            <p className="pillars__note">{p.note}</p>
-          </div>
-        ))}
-      </section>
+
     </>
   );
 }

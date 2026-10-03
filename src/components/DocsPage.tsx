@@ -60,10 +60,22 @@ function headingOf(tag: 'h2' | 'h3') {
   };
 }
 
+interface Section { title: string; body: string }
+function sectionsOf(source: string, level: 2 | 3) {
+  const pattern = new RegExp(`^${"#".repeat(level)} (.+)$`, "gm");
+  const headings = [...source.matchAll(pattern)];
+  return {
+    intro: source.slice(0, headings[0]?.index ?? source.length),
+    sections: headings.map((match, index): Section => ({
+      title: match[1],
+      body: source.slice(match.index! + match[0].length, headings[index + 1]?.index ?? source.length),
+    })),
+  };
+}
+
 export function DocsPage() {
   const [key, setKey] = useState<string | null>(currentDocKey());
   const [anchor, setAnchor] = useState(location.hash.split('#').slice(2).join('#'));
-
   useEffect(() => {
     const onHash = () => {
       setKey(currentDocKey());
@@ -73,80 +85,74 @@ export function DocsPage() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  const doc = docEntries.find((d) => d.key === key);
-
+  const doc = docEntries.find(d => d.key === key);
+  const content = sectionsOf(doc?.source ?? '', 2);
   useEffect(() => {
-    if (anchor) {
-      requestAnimationFrame(() => {
-        let id = anchor;
-        try { id = decodeURIComponent(anchor); } catch { /* 忽略无效编码 */ }
-        document.getElementById(id)?.scrollIntoView();
-      });
-    } else window.scrollTo({ top: 0 });
+    document.title = doc ? `${doc.title} · Sleepy Doll` : '文档 · Sleepy Doll';
+    return () => { document.title = 'Sleepy Doll / 发条枢'; };
+  }, [doc]);
+  useEffect(() => {
+    if (!anchor) { window.scrollTo({ top: 0, behavior: 'instant' }); return; }
+    const frame = requestAnimationFrame(() => {
+      let id = anchor;
+      try { id = decodeURIComponent(anchor); } catch { /* 无效编码保持原样。 */ }
+      document.getElementById(id)?.scrollIntoView({ behavior: 'instant' });
+    });
+    return () => cancelAnimationFrame(frame);
   }, [key, anchor]);
 
   const proseLink = ({ node: _node, href, children, ...rest }: LinkProps) => {
     if (typeof href !== 'string') return <a {...rest}>{children}</a>;
     const target = rewriteLink(href, key ?? '');
-    return (
-      <a
-        {...rest}
-        href={target.href}
-        {...(target.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-      >
-        {children}
-      </a>
-    );
+    return <a {...rest} href={target.href} {...(target.external ? { target: '_blank', rel: 'noreferrer' } : {})}>{children}</a>;
   };
+  const markdown = (source: string) => <Markdown remarkPlugins={[remarkGfm]}
+    components={{ a: proseLink, h1: () => null, h2: headingOf('h2'), h3: headingOf('h3') }}>{source}</Markdown>;
 
   return (
-    <div className="docs-page">
+    <div className={`docs-page ${doc ? '' : 'docs-page--index'}`}>
       <aside className="docs-side">
         <div className="docs-side__title">文档</div>
-        <nav className="docs-side__list">
-          {docEntries.map((d) => (
-            <a
-              key={d.key}
-              className={`docs-side__link ${d.key === key ? 'is-active' : ''}`}
-              href={`#/docs/${d.key}`}
-            >
-              {d.title}
-            </a>
-          ))}
+        <nav className="docs-side__list" aria-label="文档导航">
+          {docEntries.map(d => <a key={d.key} className={`docs-side__link ${d.key === key ? 'is-active' : ''}`}
+            aria-current={d.key === key ? 'page' : undefined} href={`#/docs/${d.key}`}>{d.title}</a>)}
         </nav>
-        <a className="docs-side__repo" href={repoUrl} target="_blank" rel="noreferrer">
-          GitHub 仓库 ↗
-        </a>
+        <a className="docs-side__repo" href={repoUrl} target="_blank" rel="noreferrer">GitHub ↗</a>
       </aside>
-      <article className="docs-main">
-        {doc ? (
-          <>
-            <a className="docs-back" href="#/docs">← 全部文档</a>
-            <h1 className="docs-main__title">{doc.title}</h1>
-            <div className="docs-prose">
-              <Markdown
-                remarkPlugins={[remarkGfm]}
-                components={{ a: proseLink, h1: () => null, h2: headingOf('h2'), h3: headingOf('h3') }}
-              >
-                {doc.source}
-              </Markdown>
+      <article className={`docs-main docs-main--${key ?? 'index'}`}>
+        {doc ? <>
+          <a className="docs-back" href="#/docs">← 全部文档</a>
+          <h1 className="docs-main__title">{doc.title}</h1>
+          <div className="docs-prose">
+            <div className="docs-intro">{markdown(content.intro)}</div>
+            <div className={`doc-section-grid ${key === 'guide' || key === 'faq' ? '' : 'doc-section-grid--single'}`}>
+              {content.sections.map((section, index) => {
+                const steps = key === 'guide' && index === 0 ? sectionsOf(section.body, 3) : null;
+                return <section className={`doc-section ${steps ? 'doc-section--steps' : ''}`} key={section.title}>
+                  <h2 id={slugify(section.title)}>{section.title}</h2>
+                  {steps ? <>
+                    {markdown(steps.intro)}
+                    <ol className="doc-steps">{steps.sections.map(step => <li key={step.title}>
+                      <h3 id={slugify(step.title)}>{step.title}</h3>{markdown(step.body)}
+                    </li>)}</ol>
+                  </> : markdown(section.body)}
+                </section>;
+              })}
             </div>
-          </>
-        ) : (
-          <>
-            <h1 className="docs-main__title">文档</h1>
-            <p className="docs-main__lead">第一次使用，先看使用说明。遇到问题，可以直接查常见问题。</p>
-            <div className="docs-index">
-              {docEntries.map((d) => (
-                <a key={d.key} className="docs-index__item" href={`#/docs/${d.key}`}>
-                  <b>{d.title}</b>
-                  <span>{d.description}</span>
-                </a>
-              ))}
-            </div>
-          </>
-        )}
+          </div>
+        </> : <>
+          <h1 className="docs-main__title">文档</h1>
+          <p className="docs-main__lead">上手、排错和版本记录。</p>
+          <div className="docs-index">{docEntries.map(d => <a key={d.key} className="docs-index__item" href={`#/docs/${d.key}`}>
+            <b>{d.title}</b><span>{d.description}</span>
+          </a>)}</div>
+        </>}
       </article>
+      {doc && <aside className="docs-toc">
+        <div className="docs-toc__title">本页内容</div>
+        <nav aria-label="本页内容">{content.sections.map(section => <a key={section.title}
+          href={`#/docs/${key}#${slugify(section.title)}`}>{section.title}</a>)}</nav>
+      </aside>}
     </div>
   );
 }

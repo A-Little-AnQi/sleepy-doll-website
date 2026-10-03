@@ -32,21 +32,21 @@ export const navEntries: NavEntry[] = [
 ];
 
 export const hero = {
-  eyebrow: '发条枢', title: 'Sleepy Doll', sub: '用对话管理你的游戏助手。',
+  eyebrow: '发条枢', title: 'Sleepy Doll', sub: '给游戏助手接上 AI。',
   primary: '下载 Windows', secondary: '使用说明 ↗',
 };
 
 export interface PhaseCopy { lines: [string, string]; note: string }
 export const phases: PhaseCopy[] = [
-  { lines: ['直接说，', '你想做什么。'], note: '查配置、改参数、整理调度组，从一句话开始。' },
-  { lines: ['需要确认时，', '看一眼再继续。'], note: '要改哪里、改成什么，会在对话里列出来。' },
-  { lines: ['常用的操作，', '存下来再用。'], note: '保存成快捷任务，下次直接运行。' },
+  { lines: ['查脚本，', '改配置。'], note: '在对话里管理 BetterGI 的脚本和调度组。' },
+  { lines: ['确认后，', '再执行。'], note: '操作确认和执行进度，在同一处查看。' },
+  { lines: ['常用任务，', '一键运行。'], note: '把完成的操作保存下来。' },
 ];
 
-export const ending = { title: '先试试这个版本。', sub: '目前接入 BetterGI，正式版还在准备。', cta: '下载 Windows ↗' };
+export const ending = { title: '下载 Sleepy Doll', sub: '当前为测试版，需要自行配置模型。', cta: '下载 Windows ↗' };
 export const pillars = [
-  { id: 'bgi', title: '连接 BetterGI', note: '查配置、整理脚本和调度组。' },
-  { id: 'extensions', title: '技能与插件', note: '添加操作说明，接入更多工具。' },
-  { id: 'protocols', title: '模型自己选', note: '兼容多种模型接口，也支持 Ollama。' },
+  { id: 'bgi', title: 'BetterGI', note: '连接本机已安装的 BetterGI。' },
+  { id: 'extensions', title: '技能与插件', note: '按需添加工具和操作说明。' },
+  { id: 'protocols', title: '自选模型', note: '使用自己的 API，也支持 Ollama。' },
 ];
 export const footerNote = '© 2026 Sleepy Doll / 发条枢';
