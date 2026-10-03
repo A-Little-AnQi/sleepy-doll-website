@@ -67,6 +67,9 @@ export function SiteNav() {
       animate={{ height: compact ? 62 : 74 }}
       transition={{ duration: 0.28, ease: EASE }}
       onPointerLeave={() => setOpenDirectory(null)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenDirectory(null);
+      }}
     >
       <div className="nav__inner">
         <a className="nav__brand" href="#top" aria-label="Sleepy Doll 首页">
@@ -84,7 +87,6 @@ export function SiteNav() {
               aria-expanded={entry.directory ? (openDirectory === entry ? 'true' : 'false') : undefined}
               onMouseEnter={() => openFor(entry)}
               onFocus={() => openFor(entry)}
-              onBlur={() => setOpenDirectory(null)}
               onClick={() => openFor(entry)}
               {...(entry.external
                 ? { target: '_blank', rel: 'noreferrer' }

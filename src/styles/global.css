@@ -1205,7 +1205,11 @@ svg {
     height: auto;
     border-right: 0;
     border-bottom: 1px solid var(--hairline);
+    padding: 24px;
   }
+  .docs-side__title { margin-bottom: 12px; }
+  .docs-side__list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .docs-side__repo { display: inline-block; margin-top: 12px; }
 }
 
 /* ---------------- 减少动态效果 ---------------- */

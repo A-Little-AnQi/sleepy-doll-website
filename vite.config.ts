@@ -10,4 +10,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: './',
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': { target: 'https://sleepy-doll-api.restless-nh3.com', changeOrigin: true },
+    },
+  },
 });

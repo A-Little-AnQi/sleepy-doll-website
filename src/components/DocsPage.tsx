@@ -6,8 +6,7 @@ import { repoUrl } from '../site';
 
 /**
  * 站内文档页：hash 路由 #/docs 列表，#/docs/<key> 正文。
- * 与主仓库 docs/ 同步的 Markdown 渲染视图；文档内相对链接改写为
- * 站内文档路由或 GitHub 绝对地址。
+ * 文档源在本项目 content/docs/，相对链接改写为站内路由。
  */
 
 const DOC_KEYS = new Set(docEntries.map((d) => d.key));
@@ -78,7 +77,11 @@ export function DocsPage() {
 
   useEffect(() => {
     if (anchor) {
-      requestAnimationFrame(() => document.getElementById(decodeURIComponent(anchor))?.scrollIntoView());
+      requestAnimationFrame(() => {
+        let id = anchor;
+        try { id = decodeURIComponent(anchor); } catch { /* 忽略无效编码 */ }
+        document.getElementById(id)?.scrollIntoView();
+      });
     } else window.scrollTo({ top: 0 });
   }, [key, anchor]);
 
