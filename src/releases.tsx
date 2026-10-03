@@ -73,7 +73,7 @@ export function recordEvent(event: 'page_view' | 'download_click', release: Rele
 export function DownloadButton({ className, label }: { className?: string; label?: string }) {
   const { release, loading } = useRelease();
   return <a className={className} href={release?.url ?? releasesUrl} onClick={() => recordEvent('download_click', release)}>
-    {loading ? '读取版本…' : release ? (label ?? `下载${release.channel === 'test' ? '测试版' : 'Windows'}`) : '查看发布记录 ↗'}
+    {loading ? '获取下载信息…' : release ? (label ?? `下载${release.channel === 'test' ? '测试版' : 'Windows 版'}`) : '前往 GitHub 下载 ↗'}
   </a>;
 }
 
@@ -88,9 +88,9 @@ export function AnalyticsPreference() {
     return () => window.removeEventListener('hashchange', onHash);
   }, [enabled, release]);
   return <button className="footer-analytics" type="button" aria-pressed={enabled}
-    title="Google Analytics，仅统计访问和下载点击"
+    title="开启后使用 Google Analytics 统计页面访问和下载点击，可随时关闭。"
     onClick={() => {
       try { const next = !enabled; localStorage.setItem('sleepy-analytics-consent', next ? 'yes' : 'no'); setEnabled(next); }
       catch { /* 保持统计关闭。 */ }
-    }}>匿名统计：{enabled ? '开启' : '关闭'}</button>;
+    }}>使用统计：{enabled ? '已开启' : '已关闭'}</button>;
 }

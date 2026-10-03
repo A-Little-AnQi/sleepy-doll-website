@@ -88,7 +88,7 @@ export function DocsPage() {
   const doc = docEntries.find(d => d.key === key);
   const content = sectionsOf(doc?.source ?? '', 2);
   useEffect(() => {
-    document.title = doc ? `${doc.title} · Sleepy Doll` : '文档 · Sleepy Doll';
+    document.title = doc ? `${doc.title} · Sleepy Doll` : '帮助文档 · Sleepy Doll';
     return () => { document.title = 'Sleepy Doll / 发条枢'; };
   }, [doc]);
   useEffect(() => {
@@ -121,7 +121,7 @@ export function DocsPage() {
       </aside>
       <article className={`docs-main docs-main--${key ?? 'index'}`}>
         {doc ? <>
-          <a className="docs-back" href="#/docs">← 全部文档</a>
+          <a className="docs-back" href="#/docs">← 文档目录</a>
           <h1 className="docs-main__title">{doc.title}</h1>
           <div className="docs-prose">
             <div className="docs-intro">{markdown(content.intro)}</div>
@@ -141,16 +141,16 @@ export function DocsPage() {
             </div>
           </div>
         </> : <>
-          <h1 className="docs-main__title">文档</h1>
-          <p className="docs-main__lead">上手、排错和版本记录。</p>
+          <h1 className="docs-main__title">帮助文档</h1>
+          <p className="docs-main__lead">安装配置、功能操作与常见问题。</p>
           <div className="docs-index">{docEntries.map(d => <a key={d.key} className="docs-index__item" href={`#/docs/${d.key}`}>
             <b>{d.title}</b><span>{d.description}</span>
           </a>)}</div>
         </>}
       </article>
       {doc && <aside className="docs-toc">
-        <div className="docs-toc__title">本页内容</div>
-        <nav aria-label="本页内容">{content.sections.map(section => <a key={section.title}
+        <div className="docs-toc__title">本页目录</div>
+        <nav aria-label="本页目录">{content.sections.map(section => <a key={section.title}
           href={`#/docs/${key}#${slugify(section.title)}`}>{section.title}</a>)}</nav>
       </aside>}
     </div>

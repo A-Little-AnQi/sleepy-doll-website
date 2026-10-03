@@ -110,7 +110,7 @@ export function SiteNav() {
             className="nav__menu-btn"
             aria-expanded={mobileOpen}
             aria-controls="nav-overlay"
-            aria-label={mobileOpen ? '关闭目录' : '打开目录'}
+            aria-label={mobileOpen ? '关闭导航菜单' : '打开导航菜单'}
             onClick={() => setMobileOpen((v) => !v)}
           >
             <span className="nav__menu-icon" aria-hidden="true">
@@ -179,7 +179,7 @@ export function SiteNav() {
         aria-hidden={!mobileOpen}
         inert={!mobileOpen}
       >
-        <nav className="nav-overlay__menu" aria-label="页面目录">
+        <nav className="nav-overlay__menu" aria-label="站点导航">
           {navEntries.map((entry, i) => (
             <a
               key={entry.label}
@@ -201,7 +201,7 @@ export function SiteNav() {
             rel="noreferrer"
             onClick={() => setMobileOpen(false)}
           >
-            Discord ↗
+            Discord 社区 ↗
           </a>
           <a
             className="nav-overlay__link"
@@ -210,7 +210,7 @@ export function SiteNav() {
             rel="noreferrer"
             onClick={() => setMobileOpen(false)}
           >
-            QQ 群 ↗
+            QQ 交流群 ↗
           </a>
         </nav>
       </div>

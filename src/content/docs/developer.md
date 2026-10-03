@@ -1,13 +1,13 @@
 # 开发者的话
 
-## 先发出来试试
+## 关于测试版
 
-软件还没做好，先发一个 **0.0.1 测试版**，给大家感受一下。目前接入了 BetterGI，用着不顺或遇到问题，可以直接告诉我。
+Sleepy Doll 还在完善中。提前发布 **0.0.1 测试版**，是希望让大家体验核心功能，也听听实际使用中的问题与建议。目前主要支持 BetterGI 的配置和任务管理。
 
-## 接下来
+## 后续计划
 
-先把 BetterGI 的连接、配置和任务流程做稳，再打磨对话与快捷任务。正式版计划用 **0.1.0**，暂时不定日期。
+接下来，我会优先完善 BetterGI 的连接与任务执行，改进对话和快捷任务的使用体验。下一正式版计划为 **0.1.0**，发布日期尚未确定。
 
-## 联系我
+## 反馈渠道
 
-[GitHub Issues](https://github.com/A-Little-AnQi/Sleepy-Doll/issues) · [QQ 群](https://qm.qq.com/q/93M0VzolRC) · [Discord](https://discord.gg/RXmHGPDpj4)
+欢迎通过 [GitHub Issues](https://github.com/A-Little-AnQi/Sleepy-Doll/issues)、[QQ 交流群](https://qm.qq.com/q/93M0VzolRC) 或 [Discord 社区](https://discord.gg/RXmHGPDpj4) 反馈使用问题与建议。
