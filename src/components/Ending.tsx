@@ -1,4 +1,4 @@
-import { ending, pillars, repoUrl, productVersion } from '../site';
+import { ending, pillars, productVersion } from '../site';
 import { DownloadButton, useRelease, recordEvent } from '../releases';
 import { BrandMark } from './BrandMark';
 import mascotUrl from '../assets/mascot.webp';
@@ -26,7 +26,6 @@ export function Ending() {
           <p className="ending__sub">{ending.sub}</p>
           <p className="ending__version">{release?.version ?? productVersion} · 正式版 · Windows x64{release ? ` · ${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
           <DownloadButton className="btn btn--solid ending__cta" label={ending.cta} />
-          {release && <p className="download-links"><a href={`${repoUrl}/releases/tag/v${release.version}`} target="_blank" rel="noreferrer">GitHub 下载 ↗</a></p>}
           {testRelease && <p className="download-links"><a href={testRelease.url} onClick={() => recordEvent('download_click', testRelease)}>下载测试版 {testRelease.version} ↗</a></p>}
         </div>
       </section>

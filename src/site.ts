@@ -1,5 +1,3 @@
-export const repoUrl = 'https://github.com/A-Little-AnQi/Sleepy-Doll';
-export const releasesUrl = `${repoUrl}/releases`;
 export const productVersion = '0.1.0';
 export const docsUrl = '/docs/guide';
 export const discordUrl = 'https://discord.gg/RXmHGPDpj4';
@@ -12,7 +10,6 @@ export const navEntries: NavEntry[] = [
   { label: '下载', href: '/#download', directory: {
     title: '下载 Sleepy Doll', note: 'Windows x64', items: [
       { label: 'Windows 安装包', note: '最新可用版本', href: '/#download' },
-      { label: '历史版本', note: 'GitHub Releases', href: releasesUrl, external: true },
       { label: '源码计划', note: '0.1.0 源码暂不开放', href: '/docs/developer#源码' },
     ],
   } },

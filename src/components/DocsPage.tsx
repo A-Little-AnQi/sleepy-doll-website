@@ -2,7 +2,6 @@ import { useEffect, type AnchorHTMLAttributes } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { docEntries } from '../content/docs';
-import { repoUrl } from '../site';
 
 /**
  * 站内文档页：/docs 列表，/docs/<key> 正文。
@@ -11,7 +10,7 @@ import { repoUrl } from '../site';
 
 const DOC_KEYS = new Set(docEntries.map((d) => d.key));
 
-/** 把文档源里的相对链接改写为站内地址 或 GitHub 绝对地址。 */
+/** 把文档源里的相对链接改写为站内地址。 */
 function rewriteLink(href: string, currentKey: string): { href: string; external: boolean } {
   if (href.startsWith('#') && !href.startsWith('#/')) {
     return { href: `/docs/${currentKey}${href}`, external: false };
@@ -19,12 +18,6 @@ function rewriteLink(href: string, currentKey: string): { href: string; external
   const docMatch = href.match(/(?:\.\.\/|\.\/)?(?:bgi\/)?([\w-]+)\.md(?:#[^#]*)?$/);
   if (docMatch && DOC_KEYS.has(docMatch[1])) {
     return { href: `/docs/${docMatch[1]}${href.includes('#') ? href.slice(href.indexOf('#')) : ''}`, external: false };
-  }
-  if (href.startsWith('./') || href.startsWith('../')) {
-    // 相对链接基于当前文档在仓库 docs/（或 docs/bgi/）下的位置解析。
-    const base = currentKey === 'host-contracts' ? 'docs/bgi/' : 'docs/';
-    const resolved = new URL(href, `http://x/${base}`).pathname.replace(/^\//, '');
-    return { href: `${repoUrl}/blob/main/${resolved}`, external: true };
   }
   return { href, external: /^https?:/.test(href) };
 }
