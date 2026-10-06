@@ -2,55 +2,33 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { productVersion } from './site';
 import { currentRoute, navigationEvent } from './routing';
 import { useMobileLayout } from './useMobileLayout';
+import { channelReleases, type Release } from './releasePolicy';
+export type { Release } from './releasePolicy';
 
-export interface Release {
-  version: string;
-  channel: 'test' | 'stable';
-  url: string;
-  size: number;
-  sha256: string;
-  notes: string;
-  publishedAt: string;
-}
-const ReleaseContext = createContext<{ release: Release | null; loading: boolean }>({ release: null, loading: true });
+type ReleaseState = { release: Release | null; testRelease: Release | null; loading: boolean };
+const emptyRelease = { release: null, testRelease: null };
+const ReleaseContext = createContext<ReleaseState>({ ...emptyRelease, loading: true });
 const sessionId = Math.floor(Date.now() / 1000);
-
-function valid(value: unknown): value is Release {
-  const item = value as Partial<Release>;
-  if (!item || typeof item.version !== 'string' || !/^\d+\.\d+\.\d+$/.test(item.version)
-    || typeof item.url !== 'string' || !Number.isSafeInteger(item.size) || (item.size ?? 0) <= 0
-    || typeof item.sha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(item.sha256)
-    || !['test', 'stable'].includes(item.channel ?? '')) return false;
-  try {
-    const url = new URL(item.url);
-    return url.protocol === 'https:' && !url.username && !url.password && !url.port
-      && url.hostname === 'sleepy-doll-download.restless-nh3.com'
-      && url.pathname === `/releases/${item.version}/Sleepy-Doll-${item.version}-setup.exe`;
-  } catch { return false; }
-}
 
 export function ReleaseProvider({ children }: { children: ReactNode }) {
   const mobile = useMobileLayout();
-  const [state, setState] = useState<{ release: Release | null; loading: boolean }>({ release: null, loading: true });
+  const [state, setState] = useState<ReleaseState>({ ...emptyRelease, loading: true });
   useEffect(() => {
-    if (mobile) { setState({ release: null, loading: false }); return; }
-    setState({ release: null, loading: true });
+    if (mobile) { setState({ ...emptyRelease, loading: false }); return; }
+    setState({ ...emptyRelease, loading: true });
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), 15000);
     let active = true;
     void (async () => {
-      for (const channel of ['stable', 'test']) {
+      const results = await Promise.allSettled((['stable', 'test'] as const).map(async channel => {
         const response = await fetch(`/api/releases/${channel}`, { signal: controller.signal });
-        if (response.status === 404) continue;
+        if (response.status === 404) return null;
         if (!response.ok) throw Error('版本信息暂不可用');
-        const value: unknown = await response.json();
-        if (!valid(value) || value.channel !== channel) throw Error('版本信息格式不正确');
-        if (value.version.localeCompare(productVersion, 'en', { numeric: true }) < 0) continue;
-        if (active) setState({ release: value, loading: false });
-        return;
-      }
-      if (active) setState({ release: null, loading: false });
-    })().catch(() => { if (active) setState({ release: null, loading: false }); })
+        return response.json() as Promise<unknown>;
+      }));
+      const values = results.map(result => result.status === 'fulfilled' ? result.value : null);
+      if (active) setState({ ...channelReleases(values[0], values[1]), loading: false });
+    })().catch(() => { if (active) setState({ ...emptyRelease, loading: false }); })
       .finally(() => window.clearTimeout(timer));
     return () => { active = false; controller.abort(); window.clearTimeout(timer); };
   }, [mobile]);
@@ -65,7 +43,7 @@ export function recordEvent(event: 'page_view' | 'download_click', release: Rele
     const route = currentRoute().path;
     void fetch('/api/events', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-      body: JSON.stringify({ event, clientId, version: release?.version ?? productVersion, channel: release?.channel ?? 'test',
+      body: JSON.stringify({ event, clientId, version: release?.version ?? productVersion, channel: release?.channel ?? 'stable',
         platform: 'web', sessionId, pagePath: route }),
     }).catch(() => {});
   } catch { /* 浏览器禁用存储时，不影响页面和下载。 */ }
@@ -80,7 +58,7 @@ export function DownloadButton({ className, label }: { className?: string; label
     {loading ? '获取下载信息…' : '下载暂不可用'}
   </button>;
   return <a className={`${className ?? ''} desktop-download`} href={release.url} onClick={() => recordEvent('download_click', release)}>
-    {label ?? '下载 Windows 版'}
+    下载 Windows 正式版{label?.includes('↗') ? ' ↗' : ''}
   </a>;
 }
 

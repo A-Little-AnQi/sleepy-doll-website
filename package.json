@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --experimental-strip-types --test src/releasePolicy.test.ts",
     "dev": "vite",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "npm run typecheck && vite build && node scripts/prerender.mjs",
@@ -17,12 +18,14 @@
     "react-markdown": "^10.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "semver": "^7.8.5",
     "three": "^0.180.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "@types/semver": "^7.8.0",
     "@types/three": "^0.180.0",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "~5.8.0",
