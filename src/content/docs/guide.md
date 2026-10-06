@@ -58,4 +58,4 @@
 
 ## 问题反馈
 
-可查阅[常见问题](faq.md)，或通过 [GitHub Issues](https://github.com/A-Little-AnQi/Sleepy-Doll/issues) 提交反馈。请附上版本、操作步骤和报错信息。
+可查阅[常见问题](faq.md)，或通过 [QQ 交流群](https://qm.qq.com/q/93M0VzolRC) 和 [Discord 社区](https://discord.gg/RXmHGPDpj4) 提交反馈。请附上版本、操作步骤和报错信息。

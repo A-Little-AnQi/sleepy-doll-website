@@ -12,7 +12,7 @@ export const navEntries: NavEntry[] = [
     title: '下载 Sleepy Doll', note: 'Windows x64', items: [
       { label: 'Windows 安装包', note: '最新可用版本', href: '#download' },
       { label: '历史版本', note: 'GitHub Releases', href: releasesUrl, external: true },
-      { label: '源代码', note: '构建与开发文档', href: `${repoUrl}#readme`, external: true },
+      { label: '源码计划', note: '0.1.0 源码暂不开放', href: '#/docs/developer#源码' },
     ],
   } },
   { label: '工具与扩展', href: '#extensions', directory: {

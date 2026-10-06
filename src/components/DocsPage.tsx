@@ -117,11 +117,9 @@ export function DocsPage() {
           {docEntries.map(d => <a key={d.key} className={`docs-side__link ${d.key === key ? 'is-active' : ''}`}
             aria-current={d.key === key ? 'page' : undefined} href={`#/docs/${d.key}`}>{d.title}</a>)}
         </nav>
-        <a className="docs-side__repo" href={repoUrl} target="_blank" rel="noreferrer">GitHub ↗</a>
       </aside>
       <article className={`docs-main docs-main--${key ?? 'index'}`}>
         {doc ? <>
-          <a className="docs-back" href="#/docs">← 文档目录</a>
           <h1 className="docs-main__title">{doc.title}</h1>
           <div className="docs-prose">
             <div className="docs-intro">{markdown(content.intro)}</div>

@@ -30,7 +30,7 @@ export function Ending() {
           </div>
           <h2 className="ending__title">{ending.title}</h2>
           <p className="ending__sub">{ending.sub}</p>
-          {release && <p className="ending__version">{release.version} · {release.channel === 'test' ? '公开测试版' : '正式版'} · Windows x64 · {(release.size / 1048576).toFixed(2)} MiB</p>}
+          {release && <p className="ending__version">{release.version} · Windows x64 · {(release.size / 1048576).toFixed(2)} MiB</p>}
           <DownloadButton className="btn btn--solid ending__cta" label={ending.cta} />
           <p className="download-links"><a href={releasesUrl} target="_blank" rel="noreferrer">GitHub 下载 ↗</a> · <a href="#/docs/guide">使用指南</a> · <a href="#/docs/developer">开发者的话</a></p>
         </div>
