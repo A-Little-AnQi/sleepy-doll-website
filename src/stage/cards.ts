@@ -1,17 +1,17 @@
 /**
  * 螺旋卡片的 DOM 内容工厂。设计稿 960×540，产品图来自 assets/previews，支持直接替换图片。
  *
- * 索引 5/14/15/0 是特殊卡：对话卡、计划卡、确认卡、时间线卡；
+ * 索引 5/14/15/0 是特殊卡：对话卡、工具卡、连接卡、时间线卡；
  * 其余是普通卡（编号 + 灰线 + 圆形占位），每四张中的一张淡黄。
  */
 
 export const CARD_COUNT = 24;
 export const CHAT_CARD = 5;
-export const PLAN_CARD = 14;
-export const APPROVE_CARD = 15;
+export const TOOLS_CARD = 14;
+export const CONNECTION_CARD = 15;
 export const TIMELINE_CARD = 0;
 
-export type CardKind = 'plain' | 'chat' | 'plan' | 'approve' | 'timeline';
+export type CardKind = 'plain' | 'chat' | 'tools' | 'connection' | 'timeline';
 
 const previewFiles = import.meta.glob('../assets/previews/*.{webp,png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 function previewFront(kind: Exclude<CardKind, 'plain'>): string {

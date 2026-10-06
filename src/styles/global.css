@@ -684,22 +684,6 @@ svg {
   color: var(--ink-2);
 }
 
-/* 双卡之间的黄色决策线 */
-.decision-wave-wrap {
-  position: absolute;
-  left: 44%;
-  top: 55%;
-  width: min(24vw, 360px);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.decision-wave {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
 /* ---------------- 结尾区 ---------------- */
 
 .ending {
@@ -965,12 +949,7 @@ svg {
     font-size: 14.5px;
   }
 
-  .decision-wave-wrap {
-    left: 50%;
-    top: 74%;
-    transform: translateX(-50%);
-    width: min(64vw, 300px);
-  }
+
 
   .ending {
     padding: 14vh 20px 9vh;

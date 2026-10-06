@@ -7,7 +7,7 @@ import { BrandMark } from '../components/BrandMark';
 /**
  * 舞台文字层：首屏文案与脉冲柱（hero.exit 区间一起左移淡出）、
  * 三段阶段标题（各自 titleEnter/titleExit 区间，版式按阶段差异化：
- * 左中带编号 / 居中大字带黄带 / 左上带粗分隔线）、双卡之间的黄色决策线。
+ * 左中带编号 / 居中大字带黄带 / 左上带粗分隔线）。
  * 全部由阻尼后的进度 MotionValue 驱动，与螺旋逐帧同步。
  */
 
@@ -65,40 +65,13 @@ function PhaseHeading({
   );
 }
 
-function DecisionWave({ p }: { p: MotionValue<number> }) {
-  // 描边从双卡抽出到位开始，约 0.065p 画完，随后随阶段一起淡出。
-  const dashStart = duo.enterEnd;
-  const dashEnd = duo.enterEnd + 0.065;
-  const dash = useTransform(p, [dashStart, dashEnd], [1, 0]);
-  const dotA = useTransform(p, [dashStart, dashStart + 0.02], [0, 1]);
-  const dotB = useTransform(p, [dashEnd - 0.015, dashEnd], [0, 1]);
-  return (
-    <motion.svg className="decision-wave" viewBox="0 0 360 140" aria-hidden="true">
-      <motion.path
-        d="M8 96 C 64 96, 76 34, 128 40 S 196 118, 246 66 S 316 22, 352 44"
-        pathLength={dash}
-        stroke="#ffd400"
-        strokeWidth="6"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <motion.circle cx="8" cy="96" r="7" fill="#ffd400" opacity={dotA} />
-      <motion.circle cx="352" cy="44" r="7" fill="#ffd400" opacity={dotB} />
-    </motion.svg>
-  );
-}
-
 export function Headings({ progress }: { progress: MotionValue<number> }) {
   const heroX = useTransform(progress, [heroPhase.exitStart, heroPhase.exitEnd], [0, -90]);
   const heroOpacity = useTransform(progress, [heroPhase.exitStart, heroPhase.exitEnd], [1, 0]);
   const heroEvents = useTransform(progress, (v) =>
     v > heroPhase.hiddenAt - 0.01 ? 'none' : 'auto',
   );
-  const waveOpacity = useTransform(
-    progress,
-    [duo.titleEnterStart - 0.005, duo.titleEnterEnd, duo.titleExitStart, duo.titleExitEnd],
-    [0, 1, 1, 0],
-  );
+
 
   return (
     <div className="stage-copy">
@@ -158,9 +131,6 @@ export function Headings({ progress }: { progress: MotionValue<number> }) {
         />
       </div>
 
-      <motion.div className="decision-wave-wrap" style={{ opacity: waveOpacity }}>
-        <DecisionWave p={progress} />
-      </motion.div>
     </div>
   );
 }

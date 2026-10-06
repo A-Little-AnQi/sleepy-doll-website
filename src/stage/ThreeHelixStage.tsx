@@ -3,7 +3,7 @@ import type { MotionValue } from 'motion/react';
 import * as THREE from 'three';
 import { CSS3DObject, CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 import { SPIRAL_HANDOFFS, SPIRAL_PHASES, clamp, mix, mixAngle, smoothstep } from './spiralMotion';
-import { CARD_COUNT, CHAT_CARD, PLAN_CARD, APPROVE_CARD, TIMELINE_CARD, createCard } from './cards';
+import { CARD_COUNT, CHAT_CARD, TOOLS_CARD, CONNECTION_CARD, TIMELINE_CARD, createCard } from './cards';
 
 /**
  * 24 张 CSS3D 卡片螺旋。滚动进度经指数阻尼（14.5）后驱动：
@@ -13,7 +13,7 @@ import { CARD_COUNT, CHAT_CARD, PLAN_CARD, APPROVE_CARD, TIMELINE_CARD, createCa
  * rAF 仅在有进度差时运行，静止即停。
  */
 
-type CardKind = 'plain' | 'chat' | 'plan' | 'approve' | 'timeline';
+type CardKind = 'plain' | 'chat' | 'tools' | 'connection' | 'timeline';
 
 type CardRecord = {
   body: HTMLDivElement;
@@ -36,10 +36,10 @@ type KindAt = (index: number) => CardKind;
 const kindOf: KindAt = (index) =>
   index === CHAT_CARD
     ? 'chat'
-    : index === PLAN_CARD
-      ? 'plan'
-      : index === APPROVE_CARD
-        ? 'approve'
+    : index === TOOLS_CARD
+      ? 'tools'
+      : index === CONNECTION_CARD
+        ? 'connection'
         : index === TIMELINE_CARD
           ? 'timeline'
           : 'plain';
@@ -106,7 +106,7 @@ function extractionAmount(kind: CardKind, progress: number) {
     const leave = smoothstep(SPIRAL_PHASES.chat.exitStart, SPIRAL_PHASES.chat.exitEnd, progress);
     return enter * (1 - leave);
   }
-  if (kind === 'plan' || kind === 'approve') {
+  if (kind === 'tools' || kind === 'connection') {
     const enter = smoothstep(SPIRAL_PHASES.duo.enterStart, SPIRAL_PHASES.duo.enterEnd, progress);
     const leave = smoothstep(SPIRAL_PHASES.duo.exitStart, SPIRAL_PHASES.duo.exitEnd, progress);
     return enter * (1 - leave);
@@ -241,20 +241,20 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
       world.rotation.set(0, 0, 0);
 
       const chatFocus = extractionAmount('chat', position);
-      const duoFocus = extractionAmount('plan', position);
+      const duoFocus = extractionAmount('tools', position);
       const rosterFocus = extractionAmount('timeline', position);
       const sceneFocus = Math.max(chatFocus, duoFocus, rosterFocus);
 
       cards.forEach((card) => {
         let base = baseTransform(card.index, position);
-        const isPlan = card.kind === 'plan';
+        const isTools = card.kind === 'tools';
 
         const phase =
           card.kind === 'chat'
             ? SPIRAL_PHASES.chat
             : card.kind === 'timeline'
               ? SPIRAL_PHASES.timeline
-              : card.kind === 'plan' || card.kind === 'approve'
+              : card.kind === 'tools' || card.kind === 'connection'
                 ? SPIRAL_PHASES.duo
                 : null;
         let pull = 0;
@@ -275,12 +275,12 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
           ? { x: 0.1, y: -0.3, z: 20.4, rx: -0.1, ry: -0.28, rz: -0.025, scale: 0.0062 }
           : { x: -4.85, y: -0.12, z: 10.15, rx: -0.08, ry: -0.24, rz: -0.018, scale: 0.0045 };
         const duoTarget: ExtractTarget = {
-          x: compact ? (isPlan ? -0.35 : 0.35) : isPlan ? -7.5 : -4.3,
-          y: compact ? (isPlan ? 0.55 : -2.15) : -0.78,
+          x: compact ? (isTools ? -0.35 : 0.35) : isTools ? -7.5 : -4.3,
+          y: compact ? (isTools ? 0.55 : -2.15) : -0.78,
           z: compact ? 20.2 : 10.35,
-          rx: isPlan ? -0.13 : -0.07,
-          ry: isPlan ? 0.28 : -0.28,
-          rz: isPlan ? -0.035 : 0.035,
+          rx: isTools ? -0.13 : -0.07,
+          ry: isTools ? 0.28 : -0.28,
+          rz: isTools ? -0.035 : 0.035,
           scale: compact ? 0.0048 : 0.00305,
         };
         const timelineTarget: ExtractTarget = compact

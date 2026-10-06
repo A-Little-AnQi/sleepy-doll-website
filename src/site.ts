@@ -39,7 +39,7 @@ export const hero = {
 export interface PhaseCopy { lines: [string, string]; note: string }
 export const phases: PhaseCopy[] = [
   { lines: ['用对话，', '管理任务。'], note: '查询配置、查找脚本、整理调度组。' },
-  { lines: ['确认操作，', '查看进度。'], note: '修改或执行前确认对象与参数，执行记录保留在对话中。' },
+  { lines: ['连接工具，', '扩展能力。'], note: '通过插件接入工具，使用现有配置与功能。' },
   { lines: ['保存任务，', '重复使用。'], note: '将已完成的操作保存为快捷任务，后续直接运行。' },
 ];
 

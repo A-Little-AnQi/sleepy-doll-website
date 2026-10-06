@@ -3,9 +3,9 @@ import { hero, phases } from '../site';
 import { DownloadButton } from '../releases';
 import { BrandMark } from '../components/BrandMark';
 import {
-  APPROVE_CARD,
+  CONNECTION_CARD,
   CHAT_CARD,
-  PLAN_CARD,
+  TOOLS_CARD,
   TIMELINE_CARD,
   frontHTML,
   type CardKind,
@@ -45,7 +45,7 @@ function StaticCard({ kind, idx }: { kind: CardKind; idx: number }) {
 export function StaticStory() {
   const chapters: { kind: CardKind; idx: number; second?: { kind: CardKind; idx: number } }[] = [
     { kind: 'chat', idx: CHAT_CARD },
-    { kind: 'plan', idx: PLAN_CARD, second: { kind: 'approve', idx: APPROVE_CARD } },
+    { kind: 'tools', idx: TOOLS_CARD, second: { kind: 'connection', idx: CONNECTION_CARD } },
     { kind: 'timeline', idx: TIMELINE_CARD },
   ];
   return (

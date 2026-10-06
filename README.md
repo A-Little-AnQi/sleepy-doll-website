@@ -13,8 +13,8 @@ Vercel 连接本仓库的 main 分支，推送后自动构建发布。`vercel.js
 将四张截图放入 `src/assets/previews/`，文件名分别为：
 
 - `chat.webp`：对话
-- `plan.webp`：运行进度
-- `approve.webp`：操作确认
+- `tools.webp`：工具与插件
+- `connection.webp`：BetterGI 连接
 - `timeline.webp`：快捷任务
 
 也支持相同名称的 `.png`、`.jpg`、`.jpeg`，优先级依次为 webp、png、jpg、jpeg、svg。现有 SVG 是占位图；加入截图后无需改代码。建议比例 16:9，图片完整展示，不裁切。提交并推送即可更新网站。
