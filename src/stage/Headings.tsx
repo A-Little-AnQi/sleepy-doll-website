@@ -3,6 +3,7 @@ import { SPIRAL_PHASES } from './spiralMotion';
 import { hero, phases } from '../site';
 import { DownloadButton } from '../releases';
 import { BrandMark } from '../components/BrandMark';
+import { StageVignettes } from './StageVignettes';
 
 /**
  * 舞台文字层：首屏文案与脉冲柱（hero.exit 区间一起左移淡出）、
@@ -95,7 +96,7 @@ export function Headings({ progress }: { progress: MotionValue<number> }) {
         <p className="hero-sub">{hero.sub}</p>
         <div className="hero-actions">
           <DownloadButton className="btn btn--solid" label={hero.primary} />
-          <a className="btn btn--ghost" href="#/docs/guide">
+          <a className="btn btn--ghost" href="/docs/guide">
             {hero.secondary}
           </a>
         </div>
@@ -130,7 +131,7 @@ export function Headings({ progress }: { progress: MotionValue<number> }) {
           variant="top"
         />
       </div>
-
+      <StageVignettes progress={progress} />
     </div>
   );
 }

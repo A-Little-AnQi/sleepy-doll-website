@@ -50,6 +50,16 @@
   background: #e8e6d9;
 }
 
+/* 功能卡在螺旋中与普通卡一致，抽出时交叉淡入插画。 */
+.three-card-placeholder,
+.three-card-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.three-card-placeholder { opacity: calc(1 - var(--card-detail, 0)); }
+.three-card-art { opacity: var(--card-detail, 0); }
+
 .three-card.is-yellow .three-card-face,
 .three-card.is-yellow .three-card-back {
   background: #f8ecc0;

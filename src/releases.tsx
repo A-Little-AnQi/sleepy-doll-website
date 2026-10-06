@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { releasesUrl } from './site';
+import { productVersion } from './site';
+import { currentRoute, navigationEvent } from './routing';
+import { useMobileLayout } from './useMobileLayout';
 
 export interface Release {
   version: string;
@@ -28,8 +30,11 @@ function valid(value: unknown): value is Release {
 }
 
 export function ReleaseProvider({ children }: { children: ReactNode }) {
+  const mobile = useMobileLayout();
   const [state, setState] = useState<{ release: Release | null; loading: boolean }>({ release: null, loading: true });
   useEffect(() => {
+    if (mobile) { setState({ release: null, loading: false }); return; }
+    setState({ release: null, loading: true });
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), 15000);
     let active = true;
@@ -40,6 +45,7 @@ export function ReleaseProvider({ children }: { children: ReactNode }) {
         if (!response.ok) throw Error('版本信息暂不可用');
         const value: unknown = await response.json();
         if (!valid(value) || value.channel !== channel) throw Error('版本信息格式不正确');
+        if (value.version.localeCompare(productVersion, 'en', { numeric: true }) < 0) continue;
         if (active) setState({ release: value, loading: false });
         return;
       }
@@ -47,24 +53,19 @@ export function ReleaseProvider({ children }: { children: ReactNode }) {
     })().catch(() => { if (active) setState({ release: null, loading: false }); })
       .finally(() => window.clearTimeout(timer));
     return () => { active = false; controller.abort(); window.clearTimeout(timer); };
-  }, []);
+  }, [mobile]);
   return <ReleaseContext.Provider value={state}>{children}</ReleaseContext.Provider>;
 }
 export function useRelease() { return useContext(ReleaseContext); }
 
-function consentEnabled() {
-  try { return localStorage.getItem('sleepy-analytics-consent') === 'yes'; } catch { return false; }
-}
-
 export function recordEvent(event: 'page_view' | 'download_click', release: Release | null) {
-  if (!consentEnabled() || !release) return;
   try {
     const clientId = localStorage.getItem('sleepy-analytics-id') || crypto.randomUUID();
     localStorage.setItem('sleepy-analytics-id', clientId);
-    const route = location.hash.startsWith('#/docs') ? location.hash.slice(1).split('#')[0] : '/';
+    const route = currentRoute().path;
     void fetch('/api/events', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-      body: JSON.stringify({ event, clientId, version: release.version, channel: release.channel,
+      body: JSON.stringify({ event, clientId, version: release?.version ?? productVersion, channel: release?.channel ?? 'test',
         platform: 'web', sessionId, pagePath: route }),
     }).catch(() => {});
   } catch { /* 浏览器禁用存储时，不影响页面和下载。 */ }
@@ -72,25 +73,38 @@ export function recordEvent(event: 'page_view' | 'download_click', release: Rele
 
 export function DownloadButton({ className, label }: { className?: string; label?: string }) {
   const { release, loading } = useRelease();
-  return <a className={className} href={release?.url ?? releasesUrl} onClick={() => recordEvent('download_click', release)}>
-    {loading ? '获取下载信息…' : release ? (label ?? `下载${release.channel === 'test' ? '测试版' : 'Windows 版'}`) : '前往 GitHub 下载 ↗'}
+  const mobile = useMobileLayout();
+  if (mobile) return null;
+  if (!release) return <button className={`${className ?? ''} desktop-download`} type="button" disabled
+    title={loading ? undefined : '暂未获取到可用安装包信息'}>
+    {loading ? '获取下载信息…' : '下载暂不可用'}
+  </button>;
+  return <a className={`${className ?? ''} desktop-download`} href={release.url} onClick={() => recordEvent('download_click', release)}>
+    {label ?? '下载 Windows 版'}
   </a>;
 }
 
-export function AnalyticsPreference() {
-  const { release } = useRelease();
-  const [enabled, setEnabled] = useState(consentEnabled);
+/** 官网匿名访问统计，无页面设置入口。 */
+export function WebsiteAnalytics() {
+  const { release, loading } = useRelease();
   useEffect(() => {
-    if (!enabled || !release) return;
-    recordEvent('page_view', release);
-    const onHash = () => recordEvent('page_view', release);
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
-  }, [enabled, release]);
-  return <button className="footer-analytics" type="button" aria-pressed={enabled}
-    title="开启后使用 Google Analytics 统计页面访问和下载点击，可随时关闭。"
-    onClick={() => {
-      try { const next = !enabled; localStorage.setItem('sleepy-analytics-consent', next ? 'yes' : 'no'); setEnabled(next); }
-      catch { /* 保持统计关闭。 */ }
-    }}>使用统计：{enabled ? '已开启' : '已关闭'}</button>;
+    if (loading) return;
+    let lastPath = '';
+    const onRoute = () => {
+      const path = currentRoute().path;
+      if (path === lastPath) return;
+      lastPath = path;
+      recordEvent('page_view', release);
+    };
+    onRoute();
+    window.addEventListener('hashchange', onRoute);
+    window.addEventListener('popstate', onRoute);
+    window.addEventListener(navigationEvent, onRoute);
+    return () => {
+      window.removeEventListener('hashchange', onRoute);
+      window.removeEventListener('popstate', onRoute);
+      window.removeEventListener(navigationEvent, onRoute);
+    };
+  }, [loading, release]);
+  return null;
 }

@@ -6,6 +6,6 @@ import { useState } from 'react';
  * useScroll 绑定失效；系统设置变更后刷新页面即可生效。
  */
 export function usePrefersReducedMotion(): boolean {
-  const [reduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [reduced] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   return reduced;
 }

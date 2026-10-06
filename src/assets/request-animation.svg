@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="query-scene" width="640" height="235" viewBox="0 0 640 235" role="img" aria-label="输入要求、点击发送并流式查找脚本">
+<title>输入要求、点击发送并流式查找脚本</title><defs><style>
+.query-scene text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;fill:#292e24}
+@keyframes query-cycle{0%,3%,100%{opacity:0}8%,86%{opacity:1}96%{opacity:0}}
+@keyframes query-float{0%,100%{transform:translateY(4px)}50%{transform:translateY(-5px)}}
+@keyframes query-request{0%,27%{opacity:1}36%,100%{opacity:.48}}
+@keyframes query-send{0%,26%{transform:scale(1);opacity:1}29%{transform:scale(.83);opacity:1}32%{transform:scale(1);opacity:1}40%,100%{transform:translate(62px,-36px) scale(.9);opacity:0}}
+@keyframes query-pointer{0%,19%,39%,100%{opacity:0;transform:translate(28px,46px)}22%{opacity:1;transform:translate(28px,46px)}27%{opacity:1;transform:translate(0,0)}29%{opacity:1;transform:translate(1px,2px) scale(.92)}32%{opacity:1;transform:translate(0,0)}37%{opacity:0;transform:translate(16px,22px)}}
+@keyframes query-hit{0%,27%,39%,100%{opacity:0;transform:scale(.3)}29%{opacity:.62;transform:scale(.65)}36%{opacity:0;transform:scale(1.8)}}
+@keyframes query-search{0%,37%,100%{opacity:0}42%,87%{opacity:1}}
+@keyframes query-turn{to{transform:rotate(360deg)}}
+.query-scene .q-cycle{animation:query-cycle 11s linear infinite}
+.query-scene .q-float{animation:query-float 5.5s ease-in-out infinite}
+.query-scene .q-request{animation:query-request 11s linear infinite}
+.query-scene .q-send{transform-box:fill-box;transform-origin:center;animation:query-send 11s linear infinite}
+.query-scene .q-pointer{opacity:0;animation:query-pointer 11s linear infinite}
+.query-scene .q-hit{opacity:0;transform-box:fill-box;transform-origin:center;animation:query-hit 11s linear infinite}
+.query-scene .q-search{animation:query-search 11s linear infinite}
+.query-scene .q-spin{transform-origin:35px 165px;animation:query-turn 4s linear infinite}
+@keyframes query-input-0{0%,8.182%{opacity:0}8.282%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-0{animation:query-input-0 11s linear infinite}@keyframes query-input-1{0%,9.727%{opacity:0}9.827%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-1{animation:query-input-1 11s linear infinite}@keyframes query-input-2{0%,11.273%{opacity:0}11.373%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-2{animation:query-input-2 11s linear infinite}@keyframes query-input-3{0%,12.818%{opacity:0}12.918%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-3{animation:query-input-3 11s linear infinite}@keyframes query-input-4{0%,14.364%{opacity:0}14.464%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-4{animation:query-input-4 11s linear infinite}@keyframes query-input-5{0%,15.909%{opacity:0}16.009%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-5{animation:query-input-5 11s linear infinite}@keyframes query-input-6{0%,17.455%{opacity:0}17.555%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-6{animation:query-input-6 11s linear infinite}@keyframes query-input-7{0%,19.000%{opacity:0}19.100%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-7{animation:query-input-7 11s linear infinite}@keyframes query-input-8{0%,20.545%{opacity:0}20.645%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-8{animation:query-input-8 11s linear infinite}@keyframes query-input-9{0%,22.091%{opacity:0}22.191%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-input-9{animation:query-input-9 11s linear infinite}@keyframes query-output-0{0%,39.091%{opacity:0}39.191%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-0{animation:query-output-0 11s linear infinite}@keyframes query-output-1{0%,41.273%{opacity:0}41.373%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-1{animation:query-output-1 11s linear infinite}@keyframes query-output-2{0%,43.455%{opacity:0}43.555%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-2{animation:query-output-2 11s linear infinite}@keyframes query-output-3{0%,45.636%{opacity:0}45.736%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-3{animation:query-output-3 11s linear infinite}@keyframes query-output-4{0%,47.818%{opacity:0}47.918%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-4{animation:query-output-4 11s linear infinite}@keyframes query-output-5{0%,50.000%{opacity:0}50.100%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-5{animation:query-output-5 11s linear infinite}@keyframes query-output-6{0%,52.182%{opacity:0}52.282%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-6{animation:query-output-6 11s linear infinite}@keyframes query-output-7{0%,54.364%{opacity:0}54.464%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-7{animation:query-output-7 11s linear infinite}@keyframes query-output-8{0%,56.545%{opacity:0}56.645%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-8{animation:query-output-8 11s linear infinite}@keyframes query-output-9{0%,58.727%{opacity:0}58.827%,89%{opacity:1}97%,100%{opacity:0}}
+.query-scene .query-output-9{animation:query-output-9 11s linear infinite}@keyframes query-caret{0%,8%{opacity:0;transform:translateX(0)}7.636%{opacity:1;transform:translateX(0px)}9.182%{opacity:1;transform:translateX(28px)}10.727%{opacity:1;transform:translateX(56px)}12.273%{opacity:1;transform:translateX(84px)}13.818%{opacity:1;transform:translateX(112px)}15.364%{opacity:1;transform:translateX(140px)}16.909%{opacity:1;transform:translateX(168px)}18.455%{opacity:1;transform:translateX(196px)}20.000%{opacity:1;transform:translateX(224px)}21.545%{opacity:1;transform:translateX(252px)}23.091%{opacity:1;transform:translateX(280px)}27%,100%{opacity:0;transform:translateX(280px)}}
+.query-scene .q-caret{animation:query-caret 11s steps(1,end) infinite}@media(prefers-reduced-motion:reduce){.query-scene *{animation:none!important}.query-scene .q-pointer,.query-scene .q-hit,.query-scene .q-caret{display:none}.query-scene .q-send{opacity:.5}.query-scene .q-request{opacity:.5}}</style></defs>
+<g class="q-cycle"><g class="q-float">
+<g class="q-request"><text x="26" y="74" font-size="28" font-weight="550" class="query-input-0">帮</text><text x="54" y="74" font-size="28" font-weight="550" class="query-input-1">我</text><text x="82" y="74" font-size="28" font-weight="550" class="query-input-2">查</text><text x="110" y="74" font-size="28" font-weight="550" class="query-input-3">找</text><text x="138" y="74" font-size="28" font-weight="550" class="query-input-4">材</text><text x="166" y="74" font-size="28" font-weight="550" class="query-input-5">料</text><text x="194" y="74" font-size="28" font-weight="550" class="query-input-6">收</text><text x="222" y="74" font-size="28" font-weight="550" class="query-input-7">集</text><text x="250" y="74" font-size="28" font-weight="550" class="query-input-8">脚</text><text x="278" y="74" font-size="28" font-weight="550" class="query-input-9">本</text></g><rect x="26" y="49" width="2" height="30" rx="1" fill="#787f6c" class="q-caret"/>
+<circle cx="471" cy="66" r="23" fill="#ffd400" class="q-hit"/>
+<g class="q-send"><path d="m443 46 59 21-43 12 7-17z" fill="#2e3426"/><path d="m443 46 23 16 36 5" fill="none" stroke="#f3f1e6" stroke-width="2"/></g>
+<g transform="translate(477 69)"><g class="q-pointer"><path d="M0 0v28l8-8 7 13 6-3-7-13h13z" fill="#262e1e" stroke="#f5f4ec" stroke-width="2" stroke-linejoin="round"/></g></g>
+<g class="q-search"><g class="q-spin"><path d="M35 152v26m-13-13h26m-22-9 18 18m0-18-18 18" stroke="#d9b916" stroke-width="3" stroke-linecap="round"/></g></g>
+<text x="66" y="174" font-size="26" font-weight="500" class="query-output-0">正</text><text x="92" y="174" font-size="26" font-weight="500" class="query-output-1">在</text><text x="118" y="174" font-size="26" font-weight="500" class="query-output-2">查</text><text x="144" y="174" font-size="26" font-weight="500" class="query-output-3">找</text><text x="170" y="174" font-size="26" font-weight="500" class="query-output-4">材</text><text x="196" y="174" font-size="26" font-weight="500" class="query-output-5">料</text><text x="222" y="174" font-size="26" font-weight="500" class="query-output-6">收</text><text x="248" y="174" font-size="26" font-weight="500" class="query-output-7">集</text><text x="274" y="174" font-size="26" font-weight="500" class="query-output-8">脚</text><text x="300" y="174" font-size="26" font-weight="500" class="query-output-9">本</text>
+</g></g></svg>

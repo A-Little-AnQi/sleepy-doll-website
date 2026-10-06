@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="parcel-scene" width="640" height="365" viewBox="0 0 640 365" role="img" aria-label="多个任务打包成快递箱并送走">
+<title>多个任务打包成快递箱并送走</title><defs><style>
+.parcel-scene text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;fill:#59624b}
+@keyframes parcel-cycle{0%,3%,100%{opacity:0}10%,82%{opacity:1}96%{opacity:0}}
+@keyframes parcel-task{0%,5%{opacity:0;transform:translate(var(--x),calc(var(--y) + 14px)) rotate(var(--r)) scale(.94)}12%,28%{opacity:1;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1)}34%{opacity:1;transform:translate(var(--x),calc(var(--y) - 6px)) rotate(var(--r)) scale(1)}39%{opacity:1;transform:translate(var(--mx),var(--my)) rotate(var(--mr)) scale(.88)}45%{opacity:.9;transform:translate(0,-4px) rotate(120deg) scale(.7)}49%,100%{opacity:0;transform:translate(0,12px) rotate(240deg) scale(.04)}}
+@keyframes parcel-box{0%,36%{opacity:0;transform:translateY(18px) scale(.68)}41%,45%{opacity:1;transform:translateY(6px) scale(.98)}48%{opacity:1;transform:translateY(-2px) scale(1.08)}52%{opacity:1;transform:translateY(4px) scale(.96)}57%,65%{opacity:1;transform:translateY(0) scale(1)}75%{opacity:1;transform:translate(62px,-14px) rotate(5deg) scale(1)}86%{opacity:.4;transform:translate(265px,-59px) rotate(17deg) scale(.85)}92%,100%{opacity:0;transform:translate(365px,-84px) rotate(21deg) scale(.75)}}
+@keyframes parcel-lid{0%,44%{transform:translateY(-39px) rotate(-6deg) scaleY(1.5)}49%{transform:translateY(0) scaleY(1)}52%{transform:translateY(2px) scaleY(.94)}56%,100%{transform:translateY(0) scaleY(1)}}
+@keyframes parcel-snap{0%,48%,61%,100%{opacity:0;transform:scale(.6)}51%{opacity:1;transform:scale(1)}58%{opacity:0;transform:scale(1.35)}}
+@keyframes parcel-word{0%,49%,66%,100%{opacity:0;transform:translateY(10px) rotate(-10deg)}53%{opacity:1;transform:translateY(0) rotate(-10deg)}62%{opacity:0;transform:translateY(-15px) rotate(-10deg)}}
+@keyframes parcel-trail{0%,66%,91%,100%{opacity:0;transform:translateX(0)}73%{opacity:.6;transform:translateX(0)}84%{opacity:0;transform:translateX(100px)}}
+.parcel-scene .p-cycle{animation:parcel-cycle 14s linear infinite}
+.parcel-scene .p-task{opacity:0;animation:parcel-task 14s cubic-bezier(.4,0,.2,1) infinite}
+.parcel-scene .p-box{animation:parcel-box 14s cubic-bezier(.4,0,.2,1) infinite}
+.parcel-scene .p-lid{transform-box:fill-box;transform-origin:center;animation:parcel-lid 14s cubic-bezier(.3,1.3,.5,1) infinite}
+.parcel-scene .p-snap{opacity:0;animation:parcel-snap 14s linear infinite}
+.parcel-scene .p-word{opacity:0;transform-box:fill-box;transform-origin:center;animation:parcel-word 14s linear infinite}
+.parcel-scene .p-trail{opacity:0;animation:parcel-trail 14s linear infinite}
+
+@keyframes parcel-gather{0%,15%,48%,100%{opacity:0;transform:scale(.75) rotate(-20deg)}23%{opacity:.5;transform:scale(1) rotate(-10deg)}35%{opacity:.5;transform:scale(.86) rotate(45deg)}46%{opacity:0;transform:scale(.15) rotate(110deg)}}
+@keyframes parcel-top-tape{0%,54%{opacity:0;transform:scaleX(.02)}57%{opacity:1;transform:scaleX(.02)}64%,100%{opacity:1;transform:scaleX(1)}}
+@keyframes parcel-side-tape{0%,60%{opacity:0;transform:scaleY(.02)}62%{opacity:1;transform:scaleY(.02)}67%,100%{opacity:1;transform:scaleY(1)}}
+@keyframes parcel-label{0%,62%{opacity:0;transform:translate(-26px,-8px) rotate(-17deg) scale(.9)}67%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1.08)}70%,100%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}}
+@keyframes parcel-stamp{0%,67%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.35)}73%,100%{opacity:1;transform:scale(1)}}
+.parcel-scene .p-gather{transform-box:fill-box;transform-origin:center;animation:parcel-gather 14s ease-in-out infinite}
+.parcel-scene .p-top-tape{transform-box:fill-box;transform-origin:left;animation:parcel-top-tape 14s linear infinite}
+.parcel-scene .p-side-tape{transform-box:fill-box;transform-origin:top;animation:parcel-side-tape 14s linear infinite}
+.parcel-scene .p-label{transform-box:fill-box;transform-origin:center;animation:parcel-label 14s cubic-bezier(.3,1.3,.5,1) infinite}
+.parcel-scene .p-stamp{transform-box:fill-box;transform-origin:center;animation:parcel-stamp 14s cubic-bezier(.3,1.3,.5,1) infinite}
+
+@media(prefers-reduced-motion:reduce){.parcel-scene *{animation:none!important}.parcel-scene .p-task,.parcel-scene .p-snap,.parcel-scene .p-word,.parcel-scene .p-trail,.parcel-scene .p-gather{display:none}}
+</style><filter id="parcel-shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#566149" flood-opacity=".14"/></filter></defs>
+<g class="p-cycle">
+<g transform="translate(320 160)"><g class="p-gather" fill="none" stroke="#a9b698" stroke-width="2"><ellipse rx="145" ry="58" stroke-dasharray="6 12"/><path d="M-92-52c107-53 192 6 174 53s-78 39-82-1"/></g><g class="p-task" style="--x:-189px;--y:-61px;--r:-18deg;--mx:-68.04px;--my:-18.3px;--mr:38deg;animation-delay:-0.0s"><path d="M-33-44h46l20 20v68h-66z" fill="#f9faf3" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#e2e8d7"/><path d="m-18 1 13 12 25-30" fill="none" stroke="#69785a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="p-task" style="--x:-85px;--y:-109px;--r:7deg;--mx:-30.6px;--my:-32.7px;--mr:63deg;animation-delay:-0.035s"><path d="M-33-44h46l20 20v68h-66z" fill="#fff1a4" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#efd679"/><path d="M-17 0h34m-17-17v34" stroke="#444f36" stroke-width="5" stroke-linecap="round"/></g><g class="p-task" style="--x:42px;--y:-97px;--r:-9deg;--mx:15.12px;--my:-29.1px;--mr:47deg;animation-delay:-0.07s"><path d="M-33-44h46l20 20v68h-66z" fill="#f9faf3" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#e2e8d7"/><path d="m-19 7 20-28 19 28z" fill="#d9b414"/></g><g class="p-task" style="--x:142px;--y:-38px;--r:15deg;--mx:51.12px;--my:-11.4px;--mr:71deg;animation-delay:-0.10500000000000001s"><path d="M-33-44h46l20 20v68h-66z" fill="#fff1a4" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#efd679"/><path d="m-18 1 13 12 25-30" fill="none" stroke="#69785a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="p-task" style="--x:-151px;--y:72px;--r:12deg;--mx:-54.36px;--my:21.6px;--mr:68deg;animation-delay:-0.14s"><path d="M-33-44h46l20 20v68h-66z" fill="#f9faf3" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#e2e8d7"/><path d="M-17 0h34m-17-17v34" stroke="#444f36" stroke-width="5" stroke-linecap="round"/></g><g class="p-task" style="--x:141px;--y:89px;--r:-13deg;--mx:50.76px;--my:26.7px;--mr:43deg;animation-delay:-0.17500000000000002s"><path d="M-33-44h46l20 20v68h-66z" fill="#fff1a4" filter="url(#parcel-shadow)"/><path d="M13-44v20h20" fill="#efd679"/><path d="m-19 7 20-28 19 28z" fill="#d9b414"/></g></g>
+<g class="p-trail" stroke="#b6c29f" stroke-width="3" stroke-linecap="round"><path d="M336 207c44 8 57-13 106-13m-85 32c47 5 67-15 97-11m-62 26c21 3 40-7 58-8"/></g>
+<g transform="translate(320 187)"><g class="p-box"><ellipse cx="0" cy="139" rx="85" ry="12" fill="#677555" opacity=".12"/>
+<g filter="url(#parcel-shadow)"><path d="m-95-30 95 40v111l-95-41z" fill="#ffd94d"/><path d="m0 10 97-42v112L0 121z" fill="#e4b721"/>
+<g class="p-lid"><path d="m-95-30 95-44 97 42L0 10z" fill="#ffe987"/><path d="m-95-30 95 40 97-42M0-74v84" fill="none" stroke="#d8b329" stroke-width="2"/><path d="m-15-67 18-8 93 42-17 8z" fill="#faf4ca" class="p-top-tape"/></g>
+<path d="m33-4 18-8v111l-18 8z" fill="#f7edb6" class="p-side-tape"/>
+<g class="p-label"><path d="m-74 11 46 20v48l-46-20z" fill="#fffaf0"/>
+<g stroke="#4d573b" stroke-width="2"><path d="m-66 27 29 13m-29-6 29 13m-27-1 2 11m5-8 2 11m5-8 2 11m5-8 2 11"/></g></g><path d="m-55 46 6 8 14-7" fill="none" stroke="#668353" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="p-stamp"/>
+</g></g></g>
+<g transform="translate(320 158)"><g class="p-snap" stroke="#c9ad21" stroke-width="3" stroke-linecap="round"><path d="m-104-40-16-12m20 44-20 2m87-68-3-21m56 22 9-18m75 49 19-7"/></g></g>
+<text x="427" y="153" font-size="26" font-weight="650" class="p-word">啪嗒</text>
+</g></svg>

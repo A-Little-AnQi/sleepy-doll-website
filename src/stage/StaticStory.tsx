@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { hero, phases } from '../site';
 import { DownloadButton } from '../releases';
 import { BrandMark } from '../components/BrandMark';
+import { FloatingVignette } from './StageVignettes';
 import {
   CONNECTION_CARD,
   CHAT_CARD,
@@ -54,13 +55,14 @@ export function StaticStory() {
         <p className="hero-eyebrow">{hero.eyebrow}</p>
         <BrandMark className="static-hero__mark" />
         <h1>{hero.title}</h1><p className="hero-sub">{hero.sub}</p>
-        <div className="hero-actions"><DownloadButton className="btn btn--solid" label={hero.primary} /><a className="btn btn--ghost" href="#/docs/guide">{hero.secondary}</a></div>
+        <div className="hero-actions"><DownloadButton className="btn btn--solid" label={hero.primary} /><a className="btn btn--ghost" href="/docs/guide">{hero.secondary}</a></div>
       </section>
       {chapters.map((ch, i) => (
         <section key={i} className="static-story__chapter">
           <div className="static-story__text">
             <h2 className="phase-heading__title">{phases[i].lines.join('')}</h2>
             <p className="phase-heading__note">{phases[i].note}</p>
+            {i !== 1 && <FloatingVignette kind={i === 0 ? 'query' : 'parcel'} className="static-vignette" />}
           </div>
           <div className="static-story__cards">
             <StaticCard kind={ch.kind} idx={ch.idx} />

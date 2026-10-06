@@ -160,6 +160,7 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
     renderer.domElement.className = 'three-helix-renderer';
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.inset = '0';
+    renderer.domElement.style.zIndex = '0';
     host.appendChild(renderer.domElement);
 
     const world = new THREE.Group();
@@ -177,6 +178,8 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
     });
 
     let compact = false;
+    let viewportWidth = 1;
+    let viewportHeight = 1;
     let targetProgress = progress.get();
     let renderedProgress = targetProgress;
     let animationFrame = 0;
@@ -271,20 +274,29 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
           }
         }
 
+        const compactWidth = viewportWidth * .84;
+        const headingBottom = Math.max(viewportHeight * .33, Math.min(248, viewportHeight * .46));
+        const queryHeight = Math.min(viewportWidth * .89, 640) * 235 / 640;
+        const parcelHeight = Math.min(viewportWidth * .89, 640) * 365 / 640;
+        const compactScale = (z: number, pixelWidth: number) =>
+          (2 * (27 - z) * Math.tan(46 * Math.PI / 360) * viewportWidth / viewportHeight) * pixelWidth / viewportWidth / 960;
+        const compactY = (z: number, pixelCenter: number) =>
+          (.5 - pixelCenter / viewportHeight) * 2 * (27 - z) * Math.tan(46 * Math.PI / 360);
+        const chatBottom = viewportHeight - queryHeight - viewportHeight * .02 - 24;
+        const chatWidth = Math.min(compactWidth, Math.max(100, chatBottom - headingBottom) * 960 / 540);
+        const duoGap = Math.min(26, viewportHeight * .035);
+        const duoHeight = Math.min(compactWidth * 540 / 960, Math.max(100, (viewportHeight * .92 - headingBottom - duoGap) / 2));
+        const duoCenter = headingBottom + duoHeight / 2 + (isTools ? 0 : duoHeight + duoGap);
+        const parcelBottom = viewportHeight - parcelHeight - viewportHeight * .005 - 24;
+        const timelineWidth = Math.min(compactWidth, Math.max(100, parcelBottom - headingBottom) * 960 / 540);
         const chatTarget: ExtractTarget = compact
-          ? { x: 0.1, y: -0.3, z: 20.4, rx: -0.1, ry: -0.28, rz: -0.025, scale: 0.0062 }
+          ? { x: 0, y: compactY(20.4, (headingBottom + chatBottom) / 2), z: 20.4, rx: -.04, ry: -.12, rz: -.012, scale: compactScale(20.4, chatWidth) }
           : { x: -4.85, y: -0.12, z: 10.15, rx: -0.08, ry: -0.24, rz: -0.018, scale: 0.0045 };
-        const duoTarget: ExtractTarget = {
-          x: compact ? (isTools ? -0.35 : 0.35) : isTools ? -7.5 : -4.3,
-          y: compact ? (isTools ? 0.55 : -2.15) : -0.78,
-          z: compact ? 20.2 : 10.35,
-          rx: isTools ? -0.13 : -0.07,
-          ry: isTools ? 0.28 : -0.28,
-          rz: isTools ? -0.035 : 0.035,
-          scale: compact ? 0.0048 : 0.00305,
-        };
+        const duoTarget: ExtractTarget = compact
+          ? { x: 0, y: compactY(20.2, duoCenter), z: 20.2, rx: -.035, ry: isTools ? .12 : -.12, rz: isTools ? -.015 : .015, scale: compactScale(20.2, duoHeight * 960 / 540) }
+          : { x: isTools ? -7.5 : -4.3, y: -.78, z: 10.35, rx: isTools ? -.13 : -.07, ry: isTools ? .28 : -.28, rz: isTools ? -.035 : .035, scale: .00305 };
         const timelineTarget: ExtractTarget = compact
-          ? { x: 0, y: -0.65, z: 20.25, rx: -0.07, ry: -0.2, rz: -0.018, scale: 0.0058 }
+          ? { x: 0, y: compactY(20.25, (headingBottom + parcelBottom) / 2), z: 20.25, rx: -.035, ry: -.1, rz: -.012, scale: compactScale(20.25, timelineWidth) }
           : { x: -5.1, y: 0.2, z: 10.2, rx: -0.07, ry: -0.2, rz: -0.018, scale: 0.0039 };
         const target =
           card.kind === 'chat'
@@ -322,6 +334,11 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
         const queueOpacity = baseOpacity * heroReveal * mix(1, 0.72, queueSuppression);
         const opacity = mix(queueOpacity, 1, focusStrength);
         card.element.style.opacity = String(opacity);
+        // 螺旋中显示普通卡面，抽出时普通卡面与插画交叉渐隐渐显。
+        if (card.kind !== 'plain') {
+          const detailReveal = smoothstep(.05, .9, pull);
+          card.element.style.setProperty('--card-detail', detailReveal.toFixed(3));
+        }
         // 饱和度接近 1 时不设 filter：滤镜会把卡变成合成层纹理，文本发糊。
         const saturation = mix(0.55 + depth * 0.45, 1, focusStrength);
         card.element.style.filter = saturation < 0.995 ? `saturate(${saturation.toFixed(3)})` : '';
@@ -362,7 +379,9 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
     const resize = () => {
       const width = Math.max(host.clientWidth, 1);
       const height = Math.max(host.clientHeight, 1);
-      compact = width < 760;
+      viewportWidth = width;
+      viewportHeight = height;
+      compact = width < 760 || (width <= 1080 && height >= width);
       renderer.setSize(width, height);
       camera.aspect = width / height;
       camera.fov = compact ? 46 : 38;
@@ -389,7 +408,7 @@ export function ThreeHelixStage({ progress, damped, reducedMotion }: StageProps)
       window.removeEventListener('blur', clearPointerTilt);
       document.documentElement.removeEventListener('mouseleave', clearPointerTilt);
       cards.forEach(({ object, element }) => {
-        world.remove(object);
+        object.removeFromParent();
         element.remove();
       });
       renderer.domElement.remove();

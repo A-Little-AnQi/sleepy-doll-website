@@ -52,7 +52,9 @@ export function createCard(index: number, kind: CardKind): HTMLDivElement {
   const element = document.createElement('div');
   element.className = `three-card three-card--${kind}${kind === 'plain' && index % 4 === 1 ? ' is-yellow' : ''}`;
   element.setAttribute('aria-hidden', 'true');
-  const content = frontHTMLImpl(kind, index);
+  const content = kind === 'plain'
+    ? plainFront(index)
+    : `<div class="three-card-placeholder">${plainFront(index)}</div><div class="three-card-art">${previewFront(kind)}</div>`;
   element.innerHTML = `
     <div class="three-card-body">
       <div class="three-card-face">${content}</div>

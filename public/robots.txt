@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://sleepy-doll.restless-nh3.com/sitemap.xml

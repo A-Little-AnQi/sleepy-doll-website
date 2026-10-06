@@ -1,4 +1,4 @@
-import { ending, pillars, releasesUrl } from '../site';
+import { ending, pillars, repoUrl, productVersion } from '../site';
 import { DownloadButton, useRelease } from '../releases';
 import { BrandMark } from './BrandMark';
 import mascotUrl from '../assets/mascot.webp';
@@ -8,20 +8,14 @@ export function Ending() {
   const { release } = useRelease();
   return (
     <>
-      <section className="pillars">
-        {pillars.map((p) => (
-          <div key={p.id} id={p.id} className="pillars__col">
-            <h3 className="pillars__title">{p.title}</h3>
-            <p className="pillars__note">{p.note}</p>
-          </div>
-        ))}
-      </section>
       <section id="download" className="ending">
         <div className="ending__inner">
           <img
             className="ending__mascot"
             src={mascotUrl}
             alt="Sleepy Doll 吉祥物"
+            loading="lazy"
+            decoding="async"
             draggable={false}
           />
           <div className="ending__brand">
@@ -30,12 +24,19 @@ export function Ending() {
           </div>
           <h2 className="ending__title">{ending.title}</h2>
           <p className="ending__sub">{ending.sub}</p>
-          {release && <p className="ending__version">{release.version} · Windows x64 · {(release.size / 1048576).toFixed(2)} MiB</p>}
+          <p className="ending__version">{release?.version ?? productVersion} · Windows x64{release ? ` · ${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
           <DownloadButton className="btn btn--solid ending__cta" label={ending.cta} />
-          <p className="download-links"><a href={releasesUrl} target="_blank" rel="noreferrer">GitHub 下载 ↗</a> · <a href="#/docs/guide">使用指南</a> · <a href="#/docs/developer">开发者的话</a></p>
+          {release && <p className="download-links"><a href={`${repoUrl}/releases/tag/v${release.version}`} target="_blank" rel="noreferrer">GitHub 下载 ↗</a></p>}
         </div>
       </section>
-
+      <section className="pillars">
+        {pillars.map((p) => (
+          <div key={p.id} id={p.id} className="pillars__col">
+            <h3 className="pillars__title">{p.title}</h3>
+            <p className="pillars__note">{p.note}</p>
+          </div>
+        ))}
+      </section>
     </>
   );
 }

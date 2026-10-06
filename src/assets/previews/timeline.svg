@@ -1,1 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540"><rect width="960" height="540" fill="#f2f1e9"/><path d="M40 74H920" stroke="#151515" stroke-opacity=".12"/><circle cx="46" cy="38" r="10" fill="#ffd400"/><text x="68" y="45" font-family="Arial,sans-serif" font-size="22" fill="#151515">Sleepy Doll</text><rect x="68" y="140" width="824" height="310" rx="18" fill="#e6e4d9"/><text x="480" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#151515">快捷任务</text><text x="480" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#66645b">保存操作并重复运行</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="循环运行的任务轨道">
+<title>循环运行的任务轨道</title><defs><style>
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-11px)}}
+@keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes voice{0%,100%{transform:scaleY(.38)}35%{transform:scaleY(1)}65%{transform:scaleY(.62)}}
+@keyframes stream{to{stroke-dashoffset:-744}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.22}50%{opacity:.66}}
+.drift{animation:drift 5s ease-in-out infinite}.delay1{animation-delay:-1.5s}.delay2{animation-delay:-3s}.delay3{animation-delay:-4s}
+.voice{transform-box:fill-box;transform-origin:center;animation:voice 2.1s ease-in-out infinite}
+.stream{stroke-dasharray:35 337;animation:stream 7s linear infinite}.reverse{animation-direction:reverse}
+.orbit{transform-origin:480px 270px;animation:turn 24s linear infinite}.clock-hand{transform-origin:480px 270px;animation:turn 12s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.stream{stroke-dasharray:none;opacity:.7}}
+</style>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe776"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#e9b900"/></linearGradient>
+<linearGradient id="ink" x2="1" y2="1"><stop stop-color="#42453a"/><stop offset="1" stop-color="#141710"/></linearGradient>
+<radialGradient id="orb" cx=".32" cy=".24" r=".78"><stop stop-color="#fff5b2"/><stop offset=".45" stop-color="#ffda2c"/><stop offset="1" stop-color="#dba900"/></radialGradient>
+<filter id="shadow" x="-40%" y="-50%" width="180%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#535541" flood-opacity=".12"/></filter>
+<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".65" fill="#a6a795" opacity=".17"/></pattern>
+</defs><rect width="960" height="540" fill="#f3f1e6"/><rect width="960" height="540" fill="url(#grain)"/>
+<circle cx="480" cy="270" r="178" fill="#e6e9dc"/>
+<ellipse cx="480" cy="419" rx="280" ry="27" fill="#9ea58c" opacity=".13"/>
+<ellipse cx="480" cy="270" rx="295" ry="131" transform="rotate(-16 480 270)" fill="none" stroke="#cacdbb" stroke-width="42"/>
+<ellipse cx="480" cy="260" rx="295" ry="131" transform="rotate(-16 480 270)" fill="none" stroke="url(#gold)" stroke-width="37"/>
+<ellipse cx="480" cy="260" rx="295" ry="131" transform="rotate(-16 480 270)" fill="none" stroke="#2f3627" stroke-width="2"/>
+<ellipse cx="480" cy="260" rx="295" ry="131" transform="rotate(-16 480 270)" fill="none" stroke="#fff1a0" stroke-width="5" class="stream"/>
+<path d="m754 143 40 12-36 25" fill="none" stroke="#292f23" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m205 379-39-12 35-24" fill="none" stroke="#292f23" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g class="drift" filter="url(#shadow)"><circle cx="480" cy="270" r="92" fill="url(#ink)"/><circle cx="480" cy="270" r="73" fill="#f6f5eb" stroke="#b9c2aa" stroke-width="2"/>
+<path d="M480 210v10m60 50h-10m-50 60v-10m-60-50h10" stroke="#79876c" stroke-width="3" stroke-linecap="round"/>
+<path d="M480 270v-44" stroke="#222c1b" stroke-width="7" stroke-linecap="round" class="clock-hand"/>
+<path d="M480 270l25 16" stroke="#9eab8b" stroke-width="5" stroke-linecap="round"/>
+<circle cx="480" cy="270" r="8" fill="#ffd400"/>
+</g>
+<g transform="translate(249 125) rotate(-19 55 69)"><g class="drift delay2" filter="url(#shadow)">
+<path d="M0 0h79l32 32v103H0z" fill="#d9ddcf" transform="translate(6 8)"/>
+<path d="M0 0h79l32 32v103H0z" fill="#fcfcf5" stroke="#c7ceba" stroke-width="2"/><path d="M79 0v32h32" fill="#e6ebdb"/>
+<circle cx="54" cy="77" r="25" fill="#e8eddd"/></g></g><g transform="translate(249 125) rotate(-19 55 69)"><g class="drift delay2"><g transform="translate(39 64) scale(1.0)"><path d="m3 15 9 9L29 5" fill="none" stroke="#25281f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g transform="translate(662 245) rotate(13 50 67)"><g class="drift delay1" filter="url(#shadow)">
+<path d="M0 0h77l27 29v111H0z" fill="#c5a427" transform="translate(6 8)"/>
+<path d="M0 0h77l27 29v111H0z" fill="#ffe366" stroke="#e1bd2f" stroke-width="2"/><path d="M77 0v29h27" fill="#f0c52a"/>
+<circle cx="52" cy="80" r="25" fill="#303a27"/><path d="m47 66 19 14-19 14z" fill="#fff0a6"/>
+</g></g>
+<path d="M432 432h72m-58 14h48" stroke="#9da98d" stroke-width="3" stroke-linecap="round"/><g transform="translate(139 109) scale(0.725)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#adb99d"/></g><g transform="translate(795 416) scale(0.975)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#293325"/></g></svg>

@@ -1,24 +1,24 @@
-import { useEffect, useState, type AnchorHTMLAttributes } from 'react';
+import { useEffect, type AnchorHTMLAttributes } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { docEntries } from '../content/docs';
 import { repoUrl } from '../site';
 
 /**
- * 站内文档页：hash 路由 #/docs 列表，#/docs/<key> 正文。
+ * 站内文档页：/docs 列表，/docs/<key> 正文。
  * 文档源在本项目 content/docs/，相对链接改写为站内路由。
  */
 
 const DOC_KEYS = new Set(docEntries.map((d) => d.key));
 
-/** 把文档源里的相对链接改写为站内 hash 或 GitHub 绝对地址。 */
+/** 把文档源里的相对链接改写为站内地址 或 GitHub 绝对地址。 */
 function rewriteLink(href: string, currentKey: string): { href: string; external: boolean } {
   if (href.startsWith('#') && !href.startsWith('#/')) {
-    return { href: `#/docs/${currentKey}${href}`, external: false };
+    return { href: `/docs/${currentKey}${href}`, external: false };
   }
   const docMatch = href.match(/(?:\.\.\/|\.\/)?(?:bgi\/)?([\w-]+)\.md(?:#[^#]*)?$/);
   if (docMatch && DOC_KEYS.has(docMatch[1])) {
-    return { href: `#/docs/${docMatch[1]}${href.includes('#') ? href.slice(href.indexOf('#')) : ''}`, external: false };
+    return { href: `/docs/${docMatch[1]}${href.includes('#') ? href.slice(href.indexOf('#')) : ''}`, external: false };
   }
   if (href.startsWith('./') || href.startsWith('../')) {
     // 相对链接基于当前文档在仓库 docs/（或 docs/bgi/）下的位置解析。
@@ -27,11 +27,6 @@ function rewriteLink(href: string, currentKey: string): { href: string; external
     return { href: `${repoUrl}/blob/main/${resolved}`, external: true };
   }
   return { href, external: /^https?:/.test(href) };
-}
-
-function currentDocKey(): string | null {
-  const match = location.hash.match(/^#\/docs\/([\w-]+)(?:#.*)?$/);
-  return match ? match[1] : null;
 }
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & { node?: unknown };
@@ -73,24 +68,10 @@ function sectionsOf(source: string, level: 2 | 3) {
   };
 }
 
-export function DocsPage() {
-  const [key, setKey] = useState<string | null>(currentDocKey());
-  const [anchor, setAnchor] = useState(location.hash.split('#').slice(2).join('#'));
-  useEffect(() => {
-    const onHash = () => {
-      setKey(currentDocKey());
-      setAnchor(location.hash.split('#').slice(2).join('#'));
-    };
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
-  }, []);
-
+export function DocsPage({ path, anchor }: { path: string; anchor: string }) {
+  const key = path.match(/^\/docs\/([\w-]+)$/)?.[1] ?? null;
   const doc = docEntries.find(d => d.key === key);
   const content = sectionsOf(doc?.source ?? '', 2);
-  useEffect(() => {
-    document.title = doc ? `${doc.title} · Sleepy Doll` : '帮助文档 · Sleepy Doll';
-    return () => { document.title = 'Sleepy Doll / 发条枢'; };
-  }, [doc]);
   useEffect(() => {
     if (!anchor) { window.scrollTo({ top: 0, behavior: 'instant' }); return; }
     const frame = requestAnimationFrame(() => {
@@ -99,7 +80,7 @@ export function DocsPage() {
       document.getElementById(id)?.scrollIntoView({ behavior: 'instant' });
     });
     return () => cancelAnimationFrame(frame);
-  }, [key, anchor]);
+  }, [path, anchor]);
 
   const proseLink = ({ node: _node, href, children, ...rest }: LinkProps) => {
     if (typeof href !== 'string') return <a {...rest}>{children}</a>;
@@ -115,7 +96,7 @@ export function DocsPage() {
         <div className="docs-side__title">文档</div>
         <nav className="docs-side__list" aria-label="文档导航">
           {docEntries.map(d => <a key={d.key} className={`docs-side__link ${d.key === key ? 'is-active' : ''}`}
-            aria-current={d.key === key ? 'page' : undefined} href={`#/docs/${d.key}`}>{d.title}</a>)}
+            aria-current={d.key === key ? 'page' : undefined} href={`/docs/${d.key}`}>{d.title}</a>)}
         </nav>
       </aside>
       <article className={`docs-main docs-main--${key ?? 'index'}`}>
@@ -141,7 +122,7 @@ export function DocsPage() {
         </> : <>
           <h1 className="docs-main__title">帮助文档</h1>
           <p className="docs-main__lead">安装配置、功能操作与常见问题。</p>
-          <div className="docs-index">{docEntries.map(d => <a key={d.key} className="docs-index__item" href={`#/docs/${d.key}`}>
+          <div className="docs-index">{docEntries.map(d => <a key={d.key} className="docs-index__item" href={`/docs/${d.key}`}>
             <b>{d.title}</b><span>{d.description}</span>
           </a>)}</div>
         </>}
@@ -149,7 +130,7 @@ export function DocsPage() {
       {doc && <aside className="docs-toc">
         <div className="docs-toc__title">本页目录</div>
         <nav aria-label="本页目录">{content.sections.map(section => <a key={section.title}
-          href={`#/docs/${key}#${slugify(section.title)}`}>{section.title}</a>)}</nav>
+          href={`/docs/${key}#${slugify(section.title)}`}>{section.title}</a>)}</nav>
       </aside>}
     </div>
   );

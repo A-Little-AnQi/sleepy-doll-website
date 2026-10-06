@@ -1,1 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540"><rect width="960" height="540" fill="#f2f1e9"/><path d="M40 74H920" stroke="#151515" stroke-opacity=".12"/><circle cx="46" cy="38" r="10" fill="#ffd400"/><text x="68" y="45" font-family="Arial,sans-serif" font-size="22" fill="#151515">Sleepy Doll</text><rect x="68" y="140" width="824" height="310" rx="18" fill="#e6e4d9"/><text x="480" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#151515">BetterGI 连接</text><text x="480" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#66645b">连接本机 BetterGI，使用现有配置</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="连接万物的信号星系">
+<title>连接万物的信号星系</title><defs><style>
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-11px)}}
+@keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes voice{0%,100%{transform:scaleY(.38)}35%{transform:scaleY(1)}65%{transform:scaleY(.62)}}
+@keyframes stream{to{stroke-dashoffset:-744}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.22}50%{opacity:.66}}
+.drift{animation:drift 5s ease-in-out infinite}.delay1{animation-delay:-1.5s}.delay2{animation-delay:-3s}.delay3{animation-delay:-4s}
+.voice{transform-box:fill-box;transform-origin:center;animation:voice 2.1s ease-in-out infinite}
+.stream{stroke-dasharray:35 337;animation:stream 7s linear infinite}.reverse{animation-direction:reverse}
+.orbit{transform-origin:480px 270px;animation:turn 24s linear infinite}.clock-hand{transform-origin:480px 270px;animation:turn 12s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.stream{stroke-dasharray:none;opacity:.7}}
+</style>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe776"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#e9b900"/></linearGradient>
+<linearGradient id="ink" x2="1" y2="1"><stop stop-color="#42453a"/><stop offset="1" stop-color="#141710"/></linearGradient>
+<radialGradient id="orb" cx=".32" cy=".24" r=".78"><stop stop-color="#fff5b2"/><stop offset=".45" stop-color="#ffda2c"/><stop offset="1" stop-color="#dba900"/></radialGradient>
+<filter id="shadow" x="-40%" y="-50%" width="180%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#535541" flood-opacity=".12"/></filter>
+<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".65" fill="#a6a795" opacity=".17"/></pattern>
+</defs><rect width="960" height="540" fill="#f3f1e6"/><rect width="960" height="540" fill="url(#grain)"/>
+<circle cx="480" cy="270" r="207" fill="#e9e7d8"/>
+<ellipse cx="480" cy="270" rx="332" ry="133" transform="rotate(-17 480 270)" fill="none" stroke="#c8ceba" stroke-width="2"/>
+<ellipse cx="480" cy="270" rx="134" ry="219" transform="rotate(-17 480 270)" fill="none" stroke="#d9dccd" stroke-width="2"/>
+<g stroke="#b9c1a9" stroke-width="4" fill="none"><path d="M203 142C330 112 334 188 454 246"/><path d="M738 151C630 119 628 205 515 247"/><path d="M216 411C326 442 340 346 453 295"/><path d="M762 407C638 451 620 348 519 296"/></g>
+<g stroke="#e7c019" stroke-width="5" fill="none" stroke-linecap="round"><path d="M203 142C330 112 334 188 454 246" class="stream"/><path d="M738 151C630 119 628 205 515 247" class="stream reverse" style="animation-delay:-2s"/><path d="M216 411C326 442 340 346 453 295" class="stream" style="animation-delay:-4s"/><path d="M762 407C638 451 620 348 519 296" class="stream reverse" style="animation-delay:-6s"/></g>
+<ellipse cx="480" cy="372" rx="85" ry="17" fill="#777c67" opacity=".14"/>
+<g class="drift" filter="url(#shadow)"><circle cx="480" cy="270" r="89" fill="url(#orb)"/><ellipse cx="480" cy="270" rx="104" ry="39" transform="rotate(-24 480 270)" fill="none" stroke="#262d1e" stroke-width="9"/><ellipse cx="480" cy="270" rx="95" ry="31" transform="rotate(-24 480 270)" fill="none" stroke="#f8ec9e" stroke-width="2"/><circle cx="454" cy="234" r="16" fill="#fff6bf" opacity=".65"/></g>
+<g transform="translate(157 95)"><g class="drift delay2" filter="url(#shadow)"><path d="m0 29 45-29 49 29v54l-48 28L0 83z" fill="#2c3326"/><path d="m0 29 46 27 48-27m-48 27v55" fill="none" stroke="#6d775e" stroke-width="2"/></g></g>
+<g transform="translate(697 88)"><g class="drift delay1" filter="url(#shadow)"><circle cx="47" cy="53" r="47" fill="url(#gold)"/><circle cx="47" cy="53" r="20" fill="#f3f1e6"/><path d="M16 36a36 36 0 0 1 54-15" fill="none" stroke="#fff4a7" stroke-width="3" stroke-linecap="round"/></g></g>
+<g transform="translate(165 368)"><g class="drift delay3" filter="url(#shadow)"><path d="M46 0 95 87H0z" fill="#e7bd1c"/><path d="m46 0 6 69L95 87z" fill="#fbd332"/><path d="m46 0 6 69L0 87z" fill="#fff09c"/></g></g>
+<g transform="translate(704 369)"><g class="drift delay2" filter="url(#shadow)"><path d="M38 0h29v33h33v29H67v33H38V62H5V33h33z" fill="#293226"/></g></g>
+<g class="orbit"><circle cx="480" cy="69" r="7" fill="#69765b"/><circle cx="480" cy="471" r="11" fill="#ffd400"/></g><g transform="translate(829 230) scale(0.55)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#a7b197"/></g><g transform="translate(82 258) scale(0.6)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#758568"/></g></svg>
