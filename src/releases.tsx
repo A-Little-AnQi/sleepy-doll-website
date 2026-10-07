@@ -36,6 +36,10 @@ export function ReleaseProvider({ children }: { children: ReactNode }) {
 }
 export function useRelease() { return useContext(ReleaseContext); }
 
+export function downloadHref(release: Release) {
+  return release.url.replace(/\/([^/]+)$/, `/${release.sha256.toLowerCase()}/$1`);
+}
+
 export function recordEvent(event: 'page_view' | 'download_click', release: Release | null) {
   try {
     const clientId = localStorage.getItem('sleepy-analytics-id') || crypto.randomUUID();
@@ -57,7 +61,7 @@ export function DownloadButton({ className, label }: { className?: string; label
     title={loading ? undefined : '暂未获取到可用安装包信息'}>
     {loading ? '获取下载信息…' : '下载暂不可用'}
   </button>;
-  return <a className={`${className ?? ''} desktop-download`} href={release.url} onClick={() => recordEvent('download_click', release)}>
+  return <a className={`${className ?? ''} desktop-download`} href={downloadHref(release)} onClick={() => recordEvent('download_click', release)}>
     下载 Windows 版{label?.includes('↗') ? ' ↗' : ''}
   </a>;
 }
