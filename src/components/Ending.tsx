@@ -24,7 +24,7 @@ export function Ending() {
           </div>
           <h2 className="ending__title">{ending.title}</h2>
           <p className="ending__sub">{ending.sub}</p>
-          <p className="ending__version">{release?.version ?? productVersion} · 正式版 · Windows x64{release ? ` · ${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
+          <p className="ending__version">{release?.version ?? productVersion} · Windows x64{release ? ` · ${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
           <DownloadButton className="btn btn--solid ending__cta" label={ending.cta} />
           {testRelease && <p className="download-links"><a href={testRelease.url} onClick={() => recordEvent('download_click', testRelease)}>下载测试版 {testRelease.version} ↗</a></p>}
         </div>

@@ -58,7 +58,7 @@ export function DownloadButton({ className, label }: { className?: string; label
     {loading ? '获取下载信息…' : '下载暂不可用'}
   </button>;
   return <a className={`${className ?? ''} desktop-download`} href={release.url} onClick={() => recordEvent('download_click', release)}>
-    下载 Windows 正式版{label?.includes('↗') ? ' ↗' : ''}
+    下载 Windows 版{label?.includes('↗') ? ' ↗' : ''}
   </a>;
 }
 
