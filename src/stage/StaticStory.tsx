@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { Wordmark } from '../components/brand/Wordmark';
 import { hero, phases } from '../site';
 import { DownloadButton } from '../releases';
-import { BrandMark } from '../components/BrandMark';
 import { FloatingVignette } from './StageVignettes';
+import { HeroCarousel } from './Headings';
 import {
   CONNECTION_CARD,
   CHAT_CARD,
@@ -52,10 +53,28 @@ export function StaticStory() {
   return (
     <div id="story" className="static-story">
       <section className="static-hero">
-        <p className="hero-eyebrow">{hero.eyebrow}</p>
-        <BrandMark className="static-hero__mark" />
-        <h1>{hero.title}</h1><p className="hero-sub">{hero.sub}</p>
-        <div className="hero-actions"><DownloadButton className="btn btn--solid" label={hero.primary} /><a className="btn btn--ghost" href="/docs/guide">{hero.secondary}</a></div>
+        {/* 与首屏同一 hero 布局与轮播，静态入口保持普通文档流（hero-layout--static） */}
+        <div className="hero-layout hero-layout--static">
+          <div className="hero-copy">
+            <p className="hero-eyebrow">{hero.eyebrow}</p>
+            <div className="hero-title">
+              <h1 className="hero-title__text">
+                <span className="hero-title__bottom">
+                  <Wordmark className="hero-title__wordmark" />
+                  <span className="sr-only">{hero.title}</span>
+                  <i className="hero-title__band" aria-hidden="true" />
+                </span>
+              </h1>
+            </div>
+            <div className="hero-rule" />
+            <p className="hero-sub">{hero.sub}</p>
+            <div className="hero-actions">
+              <DownloadButton className="btn btn--solid" label={hero.primary} />
+              <a className="btn btn--ghost" href="/docs/guide">{hero.secondary}</a>
+            </div>
+          </div>
+          <HeroCarousel />
+        </div>
       </section>
       {chapters.map((ch, i) => (
         <section key={i} className="static-story__chapter">

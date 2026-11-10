@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="声音与对话的交汇">
-<title>声音与对话的交汇</title><defs><style>
+<svg stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="声音与对话的交汇">
+<title>声音与对话的交汇</title><desc>按原始通用元素的构图重绘。采用 Pudding 图标的米白、灰棕、浅桃、酒红与灰蓝配色、柔和描边和分层平涂，保留原始漂浮与流动动画。</desc><defs><style>
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-11px)}}
 @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes voice{0%,100%{transform:scaleY(.38)}35%{transform:scaleY(1)}65%{transform:scaleY(.62)}}
@@ -12,20 +12,20 @@
 .orbit{transform-origin:480px 270px;animation:turn 24s linear infinite}.clock-hand{transform-origin:480px 270px;animation:turn 12s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.stream{stroke-dasharray:none;opacity:.7}}
 </style>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe776"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#e9b900"/></linearGradient>
-<linearGradient id="ink" x2="1" y2="1"><stop stop-color="#42453a"/><stop offset="1" stop-color="#141710"/></linearGradient>
-<radialGradient id="orb" cx=".32" cy=".24" r=".78"><stop stop-color="#fff5b2"/><stop offset=".45" stop-color="#ffda2c"/><stop offset="1" stop-color="#dba900"/></radialGradient>
-<filter id="shadow" x="-40%" y="-50%" width="180%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#535541" flood-opacity=".12"/></filter>
-<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".65" fill="#a6a795" opacity=".17"/></pattern>
-</defs><rect width="960" height="540" fill="#f3f1e6"/><rect width="960" height="540" fill="url(#grain)"/>
-<circle cx="674" cy="232" r="207" fill="#e9e7d8" opacity=".7"/>
-<ellipse cx="482" cy="421" rx="278" ry="25" fill="#bcbca9" opacity=".14"/>
-<path d="M115 286C161 173 303 161 351 273s120 114 150-12 139-140 269-30" fill="none" stroke="#d3d3bf" stroke-width="3"/>
-<path d="M115 286C161 173 303 161 351 273s120 114 150-12 139-140 269-30" fill="none" stroke="#ffd400" stroke-width="7" stroke-linecap="round" class="stream"/>
-<g transform="rotate(-11 329 279)"><g class="drift delay1" filter="url(#shadow)">
-<path d="M215 156h230q37 0 37 37v132q0 37-37 37H314l-68 58 10-58h-41q-37 0-37-37V193q0-37 37-37z" fill="#dbddcf" transform="translate(8 9)"/>
-<path d="M215 156h230q37 0 37 37v132q0 37-37 37H314l-68 58 10-58h-41q-37 0-37-37V193q0-37 37-37z" fill="url(#ink)"/>
-<g fill="#f4f3e9">
+
+
+
+
+
+</defs><rect width="960" height="540" fill="#f5eee7"/>
+<circle cx="674" cy="232" r="207" fill="#e9ded4" opacity=".7"/>
+<ellipse cx="482" cy="421" rx="278" ry="25" fill="#b5a39a" opacity=".14"/>
+<path d="M115 286C161 173 303 161 351 273s120 114 150-12 139-140 269-30" fill="none" stroke="#b9a89f" stroke-width="3"/>
+<path d="M115 286C161 173 303 161 351 273s120 114 150-12 139-140 269-30" fill="none" stroke="#d9b8a5" stroke-width="7" stroke-linecap="round" class="stream"/>
+<g transform="rotate(-11 329 279)"><g class="drift delay1">
+
+<path d="M215 156h230q37 0 37 37v132q0 37-37 37H314l-68 58 10-58h-41q-37 0-37-37V193q0-37 37-37z" fill="#a3968e" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<g fill="#f5e9df">
 <rect x="232" y="229" width="13" height="58" rx="6.5" class="voice"/>
 <rect x="259" y="204" width="13" height="108" rx="6.5" class="voice" style="animation-delay:-.4s"/>
 <rect x="286" y="187" width="13" height="142" rx="6.5" class="voice" style="animation-delay:-.8s"/>
@@ -34,9 +34,9 @@
 <rect x="367" y="227" width="13" height="62" rx="6.5" class="voice" style="animation-delay:-1.7s"/>
 <rect x="394" y="240" width="13" height="36" rx="6.5" class="voice" style="animation-delay:-.2s"/>
 </g></g></g>
-<g transform="rotate(10 631 235)"><g class="drift" filter="url(#shadow)">
-<path d="M538 125h218q34 0 34 34v135q0 34-34 34h-24l16 47-64-47H538q-34 0-34-34V159q0-34 34-34z" fill="#d4ac24" transform="translate(7 8)"/>
-<path d="M538 125h218q34 0 34 34v135q0 34-34 34h-24l16 47-64-47H538q-34 0-34-34V159q0-34 34-34z" fill="url(#gold)" stroke="#e7bd19" stroke-width="2"/>
-<path d="M548 220c14-49 37-49 50 0s35 49 48 0 37-49 50 0 37 49 49 0" fill="none" stroke="#25271e" stroke-width="8" stroke-linecap="round"/>
-<circle cx="566" cy="174" r="5" fill="#fff3a3"/><path d="M561 282h104" stroke="#edc627" stroke-width="2"/>
-</g></g><g transform="translate(770 70) scale(1.075)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#24271f"/></g><g transform="translate(137 131) scale(0.625)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#eac31c"/></g><g class="drift delay2"><path d="M140 376v40m-20-20h40" stroke="#6f7461" stroke-width="3" stroke-linecap="round"/><circle cx="819" cy="391" r="12" fill="none" stroke="#a8ad99" stroke-width="3"/></g></svg>
+<g transform="rotate(10 631 235)"><g class="drift">
+
+<path d="M538 125h218q34 0 34 34v135q0 34-34 34h-24l16 47-64-47H538q-34 0-34-34V159q0-34 34-34z" fill="#dfc0ad" stroke="#7c6860" stroke-width="2.5"/>
+<path d="M548 220c14-49 37-49 50 0s35 49 48 0 37-49 50 0 37 49 49 0" fill="none" stroke="#6f5d57" stroke-width="8" stroke-linecap="round"/>
+<circle cx="566" cy="174" r="5" fill="#f2e0d3" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="M561 282h104" stroke="#c4a18e" stroke-width="2.5"/>
+</g></g><g transform="translate(770 70) scale(1.075)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#89766e" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g><g transform="translate(137 131) scale(0.625)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#bb9183" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g><g class="drift delay2"><path d="M140 376v40m-20-20h40" stroke="#927d73" stroke-width="3" stroke-linecap="round"/><circle cx="819" cy="391" r="12" fill="none" stroke="#b5a198" stroke-width="3"/></g></svg>

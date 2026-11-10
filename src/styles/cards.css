@@ -140,8 +140,8 @@
 }
 
 .pc-dot--on {
-  background: #ffd400;
-  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.28);
+  background: #ff7a20;
+  box-shadow: 0 0 0 3px rgba(255, 138, 43, 0.28);
 }
 
 /* ---------------- 普通卡 ---------------- */
@@ -250,8 +250,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ffd400;
-  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.3);
+  background: #ff7a20;
+  box-shadow: 0 0 0 3px rgba(255, 138, 43, 0.30);
 }
 
 .chat__main {
@@ -319,8 +319,8 @@
 }
 
 .plan__step--on b {
-  background: #ffd400;
-  border-color: #ffd400;
+  background: #ff7a20;
+  border-color: #ff7a20;
   color: #151515;
 }
 
@@ -342,7 +342,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #ffd400;
+  background: #ff7a20;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -369,7 +369,7 @@
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  border: 3.5px solid #ffd400;
+  border: 3.5px solid #ff7a20;
   background: #fdfcf7;
   display: flex;
   align-items: center;
@@ -424,7 +424,7 @@
   width: 10px;
   height: var(--h);
   border-radius: 5px;
-  background: #ffd400;
+  background: #ff7a20;
 }
 
 .speaker__bars i:nth-child(even) {
@@ -471,7 +471,7 @@
 }
 
 .approve__allow {
-  background: #ffd400;
+  background: #ff7a20;
   color: #151515;
   font-size: 15px;
   font-weight: 640;
@@ -572,7 +572,7 @@
 
 .tcell--on {
   background: #fbefc2;
-  border: 1.5px solid #ffd400;
+  border: 1.5px solid #ff7a20;
 }
 
 .tcell--on i {

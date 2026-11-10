@@ -1,33 +1,35 @@
-import { docEntries } from './content/docs';
+import { docsMeta } from './content/docs-meta';
 import { productVersion } from './site';
 import { knownPaths } from './routing';
-import mascotUrl from './assets/mascot.webp';
+import mascotUrl from './components/brand/avatar.png';
 
 export const siteOrigin = 'https://sleepy-doll.restless-nh3.com';
-const homeTitle = 'Sleepy Doll 发条枢｜通用桌面 AI 助手';
-const homeDescription = 'Sleepy Doll（发条枢）是一款通用桌面 AI 助手。通过对话调用工具、执行任务，支持插件扩展、操作审批和快捷任务。';
-const descriptions: Record<string, string> = {
-  guide: 'Sleepy Doll 使用指南：模型配置、工具连接、操作审批、执行记录与快捷任务。',
-  faq: 'Sleepy Doll 常见问题：模型调用费用、对话与密钥处理、工具适配范围。',
-  changelog: 'Sleepy Doll 更新日志，查看各版本的功能与改进。',
-  developer: 'Sleepy Doll 的开发安排、源码开放计划与反馈渠道。',
-};
+const homeTitle = 'Pudding，面向工具软件的通用 AI 助手';
+const homeDescription = 'Pudding 是一款面向工具软件的通用 AI 助手，曾用名 Sleepy Doll。用正常的话语提出需求，由助手查找资源、处理配置，再交给对应的软件执行。';
 const escape = (value: string) => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 
+/** 各页标题与描述统一来自 docs-meta 元数据，不再单独维护副本。 */
 export function seoHead(path: string, imageUrl: string) {
-  const valid = knownPaths.includes(path);
+  const notFound = path === '/404';
+  const valid = !notFound && knownPaths.includes(path);
   const canonicalPath = valid ? path : '/';
-  const doc = docEntries.find(entry => path === `/docs/${entry.key}`);
-  const title = doc ? `${doc.title}｜Sleepy Doll 发条枢` : path === '/docs' ? '帮助文档｜Sleepy Doll 发条枢' : homeTitle;
-  const description = doc ? descriptions[doc.key] : path === '/docs' ? 'Sleepy Doll 帮助文档：使用指南、常见问题、更新日志与开发计划。' : homeDescription;
+  const doc = docsMeta.find(entry => path === entry.path);
+  const title = notFound ? '页面未找到，Pudding'
+    : doc ? `${doc.title}，Pudding 帮助文档`
+    : path === '/docs' ? 'Pudding 帮助文档'
+    : homeTitle;
+  const description = notFound ? '访问的页面不存在或已移动，可从首页或帮助文档继续查找。'
+    : doc ? doc.description
+    : path === '/docs' ? 'Pudding 帮助文档：安装配置、功能指南与故障排查。'
+    : homeDescription;
   const url = siteOrigin + canonicalPath;
-  const website = { '@type': 'WebSite', '@id': `${siteOrigin}/#website`, name: 'Sleepy Doll', alternateName: '发条枢', url: `${siteOrigin}/`, inLanguage: 'zh-CN' };
+  const website = { '@type': 'WebSite', '@id': `${siteOrigin}/#website`, name: 'Pudding', alternateName: 'Sleepy Doll', url: `${siteOrigin}/`, inLanguage: 'zh-CN' };
   const webpage = { '@type': 'WebPage', '@id': `${url}#page`, url, name: title, description, inLanguage: 'zh-CN', isPartOf: { '@id': website['@id'] } };
   const graph: unknown[] = [website, webpage];
-  if (canonicalPath === '/') graph.push({ '@type': 'SoftwareApplication', name: 'Sleepy Doll', alternateName: '发条枢', url, description: homeDescription, operatingSystem: 'Windows', applicationCategory: 'UtilitiesApplication', softwareVersion: productVersion, image: imageUrl });
-  if (canonicalPath.startsWith('/docs')) {
+  if (canonicalPath === '/') graph.push({ '@type': 'SoftwareApplication', name: 'Pudding', alternateName: 'Sleepy Doll', url, description: homeDescription, operatingSystem: 'Windows', applicationCategory: 'UtilitiesApplication', softwareVersion: productVersion, image: imageUrl });
+  if (valid && canonicalPath.startsWith('/docs')) {
     const items = [{ name: '首页', item: `${siteOrigin}/` }, { name: '帮助文档', item: `${siteOrigin}/docs` }];
-    if (doc) items.push({ name: doc.title, item: url });
+    if (doc && doc.path !== '/docs') items.push({ name: doc.title, item: `${siteOrigin}${doc.path}` });
     graph.push({ '@type': 'BreadcrumbList', itemListElement: items.map((item, index) => ({ '@type': 'ListItem', position: index + 1, ...item })) });
   }
   const meta = (name: string, content: string, property = false) => `<meta data-site-seo ${property ? 'property' : 'name'}="${name}" content="${escape(content)}">`;
@@ -36,9 +38,9 @@ export function seoHead(path: string, imageUrl: string) {
     meta('description', description),
     meta('robots', valid ? 'index,follow,max-image-preview:large' : 'noindex,follow'),
     `<link data-site-seo rel="canonical" href="${escape(url)}">`,
-    meta('og:type', 'website', true), meta('og:site_name', 'Sleepy Doll', true), meta('og:locale', 'zh_CN', true),
+    meta('og:type', 'website', true), meta('og:site_name', 'Pudding', true), meta('og:locale', 'zh_CN', true),
     meta('og:title', title, true), meta('og:description', description, true), meta('og:url', url, true),
-    meta('og:image', imageUrl, true), meta('og:image:alt', 'Sleepy Doll 发条枢', true),
+    meta('og:image', imageUrl, true), meta('og:image:alt', 'Pudding', true),
     meta('twitter:card', 'summary'), meta('twitter:title', title), meta('twitter:description', description), meta('twitter:image', imageUrl),
     `<script data-site-seo type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\u003c')}</script>`,
   ].join('\n');

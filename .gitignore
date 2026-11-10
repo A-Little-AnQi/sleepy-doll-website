@@ -6,5 +6,6 @@ dist/
 .idea/
 .tmp/
 .vercel/
+/target/
 .env
 .env.*

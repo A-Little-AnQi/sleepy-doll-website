@@ -4,14 +4,15 @@ import { HeroStage } from './stage/HeroStage';
 import { Ending } from './components/Ending';
 import { SiteFooter } from './components/SiteFooter';
 import { DocsPage } from './components/DocsPage';
+import { NotFoundPage } from './components/NotFoundPage';
 import { ReleaseProvider } from './releases';
-import { currentRoute, knownPaths, navigationEvent, normalizeLegacyRoute, navigateTo, saveScrollPosition } from './routing';
+import { currentRoute, isDocsPath, knownPaths, navigationEvent, normalizeLegacyRoute, navigateTo, resolveAnchorTarget, saveScrollPosition } from './routing';
 import { updateSeo } from './seo';
 
 export function App({ initialPath = '/' }: { initialPath?: string }) {
   const [route, setRoute] = useState(() => currentRoute(initialPath));
   const scrollRestore = useRef<{ x: number; y: number } | null>(null);
-  const docs = route.path.startsWith('/docs');
+  const docs = isDocsPath(route.path);
   useEffect(() => {
     const update = (event?: Event) => {
       normalizeLegacyRoute();
@@ -22,7 +23,7 @@ export function App({ initialPath = '/' }: { initialPath?: string }) {
         return next;
       });
     };
-    let scrollTimer: number;
+    let scrollTimer = 0;
     const onScroll = () => { window.clearTimeout(scrollTimer); scrollTimer = window.setTimeout(saveScrollPosition, 160); };
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -30,7 +31,9 @@ export function App({ initialPath = '/' }: { initialPath?: string }) {
       if (!anchor || anchor.target || anchor.hasAttribute('download')) return;
       const target = new URL(anchor.href, location.href);
       const path = target.pathname.replace(/\/+$/, '') || '/';
-      if (target.origin !== location.origin || !knownPaths.includes(path)) return;
+      if (target.origin !== location.origin) return;
+      // /docs 前缀全部走站内路由（未知文档页由 DocsPage 显示未找到），其余只拦已知页。
+      if (!knownPaths.includes(path) && !isDocsPath(path)) return;
       event.preventDefault();
       navigateTo(path + target.search + target.hash);
     };
@@ -50,23 +53,28 @@ export function App({ initialPath = '/' }: { initialPath?: string }) {
     };
   }, []);
   useEffect(() => { updateSeo(route.path); }, [route.path]);
+  // 滚动统一在这里处理（DocsPage 不再各自抢滚动）：优先恢复历史位置，
+  // 其次跳锚点（小写兜底），否则回页顶。
   useEffect(() => {
     const restore = scrollRestore.current;
     scrollRestore.current = null;
-    if (docs && !restore) return;
     const frame = requestAnimationFrame(() => {
       if (restore) { window.scrollTo(restore.x, restore.y); return; }
       if (route.anchor) {
-        let id = route.anchor;
-        try { id = decodeURIComponent(id); } catch { /* Preserve malformed anchors. */ }
-        document.getElementById(id)?.scrollIntoView();
+        resolveAnchorTarget(route.anchor)?.scrollIntoView();
       } else window.scrollTo({ top: 0 });
     });
     return () => cancelAnimationFrame(frame);
-  }, [docs, route]);
-  return <ReleaseProvider><div id="top">
-    <SiteNav />
-    <main>{docs ? <DocsPage path={route.path} anchor={route.anchor} /> : <><HeroStage /><Ending /></>}</main>
-    <SiteFooter />
-  </div></ReleaseProvider>;
+  }, [route]);
+  return <ReleaseProvider>{docs ? (
+    <DocsPage path={route.path} />
+  ) : route.path === '/' ? (
+    <div id="top">
+      <SiteNav />
+      <main><HeroStage /><Ending /></main>
+      <SiteFooter />
+    </div>
+  ) : (
+    <NotFoundPage />
+  )}</ReleaseProvider>;
 }

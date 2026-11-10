@@ -14,7 +14,7 @@
 
 ## 站点结构
 
-React + TypeScript + Vite。首页是滚动舞台动画；文档页由 Markdown 生成，静态发布到 `/docs` 与 `/docs/<key>`，旧的 `#/docs` 链接仍可使用。
+React + TypeScript + Vite。首页是滚动舞台动画；文档站由 Markdown 生成，静态发布到 `/docs` 与 `/docs/<key>`，旧的 `#/docs` 链接仍可使用。文档正文放 `src/content/docs/`，页面注册、分组、排序、路由与旧地址迁移统一在 `src/content/docs-meta.ts` 维护：新增文章只需添加 MD 文件并在该文件登记一处，构建期会校验两侧一致。
 
 ## 开发
 
@@ -33,7 +33,8 @@ npm run build
 | 内容 | 位置 |
 | --- | --- |
 | 首页与导航文案 | `src/site.ts` |
-| 文档 Markdown（指南、FAQ、更新日志、开发者的话） | `src/content/docs/` |
+| 文档 Markdown（全部文档正文） | `src/content/docs/` |
+| 文档注册与分组/路由/旧地址映射 | `src/content/docs-meta.ts` |
 | 顶部 4 张场景插画（SVG） | `src/assets/previews/scene-*.svg`，经 `src/stage/Headings.tsx` 引入 |
 | 通用卡 4 张插画（SVG） | `src/assets/previews/`，由 `src/stage/cards.ts` 显式 import |
 | 品牌图标与字标（PNG） | `src/components/brand/` |

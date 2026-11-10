@@ -7,7 +7,8 @@ import {
   useTransform,
 } from 'motion/react';
 import { discordUrl, navEntries, qqUrl, type NavEntry } from '../site';
-import { BrandMark } from './BrandMark';
+import { BrandIcon } from './brand/BrandIcon';
+import { Wordmark } from './brand/Wordmark';
 import { navigationEvent, navigateTo, saveScrollPosition } from '../routing';
 import { useMobileLayout } from '../useMobileLayout';
 
@@ -131,9 +132,9 @@ export function SiteNav() {
       }}
     >
       <div className="nav__inner">
-        <a className="nav__brand" href="/#top" aria-label="Sleepy Doll 首页" onClick={event => mobileNavigate(event, '/#top')}>
-          <BrandMark className="nav__mark" />
-          <span className="nav__name">Sleepy Doll</span>
+        <a className="nav__brand" href="/#top" aria-label="Pudding 首页" onClick={event => mobileNavigate(event, '/#top')}>
+          <BrandIcon className="nav__mark" />
+          <Wordmark className="nav__name" />
         </a>
 
         <nav className="nav__links" aria-label="主导航">

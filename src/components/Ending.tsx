@@ -1,9 +1,9 @@
 import { ending, pillars, productVersion } from '../site';
 import { DownloadButton, useRelease, recordEvent, downloadHref } from '../releases';
-import { BrandMark } from './BrandMark';
-import mascotUrl from '../assets/mascot.webp';
+import { Wordmark } from './brand/Wordmark';
+import avatarUrl from './brand/avatar.png';
 
-/** 浅灰结尾区与三列特性，之后是页脚。吉祥物来自主程序 brand/mascot.webp。 */
+/** 结尾区：大号头像吉祥物 + 插画风字标（导航 lockup 之外不再出现小图标，避免重复）。 */
 export function Ending() {
   const { release, testRelease } = useRelease();
   return (
@@ -12,19 +12,18 @@ export function Ending() {
         <div className="ending__inner">
           <img
             className="ending__mascot"
-            src={mascotUrl}
-            alt="Sleepy Doll 吉祥物"
+            src={avatarUrl}
+            alt="Pudding 吉祥物"
             loading="lazy"
             decoding="async"
             draggable={false}
           />
           <div className="ending__brand">
-            <BrandMark className="ending__mark" />
-            <span className="ending__name">Sleepy Doll</span>
+            <Wordmark className="ending__name" />
           </div>
           <h2 className="ending__title">{ending.title}</h2>
           <p className="ending__sub">{ending.sub}</p>
-          <p className="ending__version">{release?.version ?? productVersion} · Windows x64{release ? ` · ${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
+          <p className="ending__version">{release?.version ?? productVersion}，Windows x64{release ? `，${(release.size / 1_000_000).toFixed(2)} MB` : ''}</p>
           <DownloadButton className="btn btn--solid ending__cta" label={ending.cta} />
           {testRelease && <p className="download-links"><a href={downloadHref(testRelease)} onClick={() => recordEvent('download_click', testRelease)}>下载测试版 {testRelease.version} ↗</a></p>}
         </div>

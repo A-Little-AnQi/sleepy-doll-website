@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="自由组合的工具模块">
-<title>自由组合的工具模块</title><defs><style>
+<svg stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="自由组合的工具模块">
+<title>自由组合的工具模块</title><desc>按原始通用元素的构图重绘。采用 Pudding 图标的米白、灰棕、浅桃、酒红与灰蓝配色、柔和描边和分层平涂，保留原始漂浮与流动动画。</desc><defs><style>
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-11px)}}
 @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes voice{0%,100%{transform:scaleY(.38)}35%{transform:scaleY(1)}65%{transform:scaleY(.62)}}
@@ -12,35 +12,35 @@
 .orbit{transform-origin:480px 270px;animation:turn 24s linear infinite}.clock-hand{transform-origin:480px 270px;animation:turn 12s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.stream{stroke-dasharray:none;opacity:.7}}
 </style>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe776"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#e9b900"/></linearGradient>
-<linearGradient id="ink" x2="1" y2="1"><stop stop-color="#42453a"/><stop offset="1" stop-color="#141710"/></linearGradient>
-<radialGradient id="orb" cx=".32" cy=".24" r=".78"><stop stop-color="#fff5b2"/><stop offset=".45" stop-color="#ffda2c"/><stop offset="1" stop-color="#dba900"/></radialGradient>
-<filter id="shadow" x="-40%" y="-50%" width="180%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#535541" flood-opacity=".12"/></filter>
-<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".65" fill="#a6a795" opacity=".17"/></pattern>
-</defs><rect width="960" height="540" fill="#f3f1e6"/><rect width="960" height="540" fill="url(#grain)"/>
-<ellipse cx="479" cy="421" rx="276" ry="26" fill="#9d9f8c" opacity=".13"/>
-<circle cx="480" cy="270" r="156" fill="#e8e6d8"/>
-<circle cx="480" cy="270" r="182" fill="none" stroke="#d4d7c8" stroke-width="2" stroke-dasharray="4 13"/>
-<g class="orbit"><circle cx="480" cy="85" r="9" fill="#ffd400"/><circle cx="480" cy="455" r="5" fill="#7f8770"/></g>
-<path d="M314 173l95 66m183-82-62 84m-198 124 85-58m173 72-72-66" fill="none" stroke="#bfc4b2" stroke-width="2" stroke-dasharray="6 8"/>
-<g transform="translate(269 118) rotate(-13 72 70)"><g class="drift delay1" filter="url(#shadow)">
-<path d="M0 29 74 0l77 34-3 92-73 32L1 121z" fill="url(#ink)"/>
-<path d="m0 29 75 35 76-30M75 64v94" fill="none" stroke="#69705b" stroke-width="2"/>
-<ellipse cx="76" cy="40" rx="23" ry="12" fill="#10130d"/><ellipse cx="76" cy="39" rx="14" ry="6" fill="#d1d5c4"/>
+
+
+
+
+
+</defs><rect width="960" height="540" fill="#f5eee7"/>
+<ellipse cx="479" cy="421" rx="276" ry="26" fill="#b9a89e" opacity=".13"/>
+<circle cx="480" cy="270" r="156" fill="#e9ded4"/>
+<circle cx="480" cy="270" r="182" fill="none" stroke="#c4b2a8" stroke-width="2.5" stroke-dasharray="4 13"/>
+<g class="orbit"><circle cx="480" cy="85" r="9" fill="#d9b8a5" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><circle cx="480" cy="455" r="5" fill="#8997a8" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g>
+<path d="M314 173l95 66m183-82-62 84m-198 124 85-58m173 72-72-66" fill="none" stroke="#b4a297" stroke-width="2.5" stroke-dasharray="6 8"/>
+<g transform="translate(269 118) rotate(-13 72 70)"><g class="drift delay1">
+<path d="M0 29 74 0l77 34-3 92-73 32L1 121z" fill="#a3968e" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="m0 29 75 35 76-30M75 64v94" fill="none" stroke="#72615a" stroke-width="2.5"/>
+<ellipse cx="76" cy="40" rx="23" ry="12" fill="#75645d" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="76" cy="39" rx="14" ry="6" fill="#efe3d9" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
 </g></g>
-<g transform="translate(574 103) rotate(14 82 82)"><g class="drift delay3" filter="url(#shadow)">
-<path d="m0 42 86-42 91 43v109l-87 43L0 153z" fill="#cfaa20"/>
-<path d="m0 42 86-42 91 43-87 43z" fill="#ffe576"/><path d="m0 42 90 44v109L0 153z" fill="#ffd400"/><path d="m90 86 87-43v109l-87 43z" fill="#e1b620"/>
-<g fill="#bca025"><ellipse cx="63" cy="28" rx="10" ry="5"/><ellipse cx="104" cy="48" rx="10" ry="5"/><ellipse cx="61" cy="49" rx="10" ry="5"/><ellipse cx="105" cy="27" rx="10" ry="5"/></g>
+<g transform="translate(574 103) rotate(14 82 82)"><g class="drift delay3">
+<path d="m0 42 86-42 91 43v109l-87 43L0 153z" fill="#c49c88" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="m0 42 86-42 91 43-87 43z" fill="#f0dfd2" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="m0 42 90 44v109L0 153z" fill="#d9b8a5" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="m90 86 87-43v109l-87 43z" fill="#bc9787" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<g fill="#8c7367"><ellipse cx="63" cy="28" rx="10" ry="5"/><ellipse cx="104" cy="48" rx="10" ry="5"/><ellipse cx="61" cy="49" rx="10" ry="5"/><ellipse cx="105" cy="27" rx="10" ry="5"/></g>
 </g></g>
-<g transform="translate(286 300) rotate(-9 70 70)"><g class="drift delay2" filter="url(#shadow)">
-<path d="M45 12h50v39h42v51H95v40H45v-40H4V51h41z" fill="#c3a022" transform="translate(8 9)"/>
-<path d="M45 12h50v39h42v51H95v40H45v-40H4V51h41z" fill="url(#gold)" stroke="#e4bb19" stroke-width="2"/>
+<g transform="translate(286 300) rotate(-9 70 70)"><g class="drift delay2">
+
+<path d="M45 12h50v39h42v51H95v40H45v-40H4V51h41z" fill="#dfc0ad" stroke="#7c6860" stroke-width="2.5"/>
 </g></g>
-<g transform="translate(586 327) rotate(12 70 60)"><g class="drift" filter="url(#shadow)">
-<path d="M5 8h140L108 119H39z" fill="#293025"/>
-<path d="M5 8 77 79 145 8M77 79l31 40M77 79l-38 40" fill="none" stroke="#6b735d" stroke-width="2"/>
-<path d="m53 54 24-34 24 34-24 25z" fill="#f5f3e7"/>
+<g transform="translate(586 327) rotate(12 70 60)"><g class="drift">
+<path d="M5 8h140L108 119H39z" fill="#998980" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M5 8 77 79 145 8M77 79l31 40M77 79l-38 40" fill="none" stroke="#79665d" stroke-width="2.5"/>
+<path d="m53 54 24-34 24 34-24 25z" fill="#f6e9de" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
 </g></g>
-<circle cx="480" cy="270" r="55" fill="#f9f8ef" stroke="#c8cebb" stroke-width="2"/><circle cx="480" cy="270" r="29" fill="#252b1f"/>
-<path d="M467 270h26m-13-13v26" stroke="#ffd400" stroke-width="4" stroke-linecap="round"/><g transform="translate(163 78) scale(0.725)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#adb69c"/></g><g transform="translate(770 399) scale(1.05)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#303728"/></g></svg>
+<circle cx="480" cy="270" r="55" fill="#f8f0e8" stroke="#b2a096" stroke-width="2.5"/><circle cx="480" cy="270" r="29" fill="#9d8b82" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M467 270h26m-13-13v26" stroke="#d9b8a5" stroke-width="4" stroke-linecap="round"/><g transform="translate(163 78) scale(0.725)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#b4a49a" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g><g transform="translate(770 399) scale(1.05)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#88756c" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g></svg>

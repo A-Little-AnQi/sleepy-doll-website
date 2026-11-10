@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="连接万物的信号星系">
-<title>连接万物的信号星系</title><defs><style>
+<svg stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="连接万物的信号星系">
+<title>连接万物的信号星系</title><desc>按原始通用元素的构图重绘。采用 Pudding 图标的米白、灰棕、浅桃、酒红与灰蓝配色、柔和描边和分层平涂，保留原始漂浮与流动动画。</desc><defs><style>
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-11px)}}
 @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes voice{0%,100%{transform:scaleY(.38)}35%{transform:scaleY(1)}65%{transform:scaleY(.62)}}
@@ -12,21 +12,21 @@
 .orbit{transform-origin:480px 270px;animation:turn 24s linear infinite}.clock-hand{transform-origin:480px 270px;animation:turn 12s linear infinite}.pulse{animation:pulse 4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.stream{stroke-dasharray:none;opacity:.7}}
 </style>
-<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe776"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#e9b900"/></linearGradient>
-<linearGradient id="ink" x2="1" y2="1"><stop stop-color="#42453a"/><stop offset="1" stop-color="#141710"/></linearGradient>
-<radialGradient id="orb" cx=".32" cy=".24" r=".78"><stop stop-color="#fff5b2"/><stop offset=".45" stop-color="#ffda2c"/><stop offset="1" stop-color="#dba900"/></radialGradient>
-<filter id="shadow" x="-40%" y="-50%" width="180%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#535541" flood-opacity=".12"/></filter>
-<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".65" fill="#a6a795" opacity=".17"/></pattern>
-</defs><rect width="960" height="540" fill="#f3f1e6"/><rect width="960" height="540" fill="url(#grain)"/>
-<circle cx="480" cy="270" r="207" fill="#e9e7d8"/>
-<ellipse cx="480" cy="270" rx="332" ry="133" transform="rotate(-17 480 270)" fill="none" stroke="#c8ceba" stroke-width="2"/>
-<ellipse cx="480" cy="270" rx="134" ry="219" transform="rotate(-17 480 270)" fill="none" stroke="#d9dccd" stroke-width="2"/>
-<g stroke="#b9c1a9" stroke-width="4" fill="none"><path d="M203 142C330 112 334 188 454 246"/><path d="M738 151C630 119 628 205 515 247"/><path d="M216 411C326 442 340 346 453 295"/><path d="M762 407C638 451 620 348 519 296"/></g>
-<g stroke="#e7c019" stroke-width="5" fill="none" stroke-linecap="round"><path d="M203 142C330 112 334 188 454 246" class="stream"/><path d="M738 151C630 119 628 205 515 247" class="stream reverse" style="animation-delay:-2s"/><path d="M216 411C326 442 340 346 453 295" class="stream" style="animation-delay:-4s"/><path d="M762 407C638 451 620 348 519 296" class="stream reverse" style="animation-delay:-6s"/></g>
-<ellipse cx="480" cy="372" rx="85" ry="17" fill="#777c67" opacity=".14"/>
-<g class="drift" filter="url(#shadow)"><circle cx="480" cy="270" r="89" fill="url(#orb)"/><ellipse cx="480" cy="270" rx="104" ry="39" transform="rotate(-24 480 270)" fill="none" stroke="#262d1e" stroke-width="9"/><ellipse cx="480" cy="270" rx="95" ry="31" transform="rotate(-24 480 270)" fill="none" stroke="#f8ec9e" stroke-width="2"/><circle cx="454" cy="234" r="16" fill="#fff6bf" opacity=".65"/></g>
-<g transform="translate(157 95)"><g class="drift delay2" filter="url(#shadow)"><path d="m0 29 45-29 49 29v54l-48 28L0 83z" fill="#2c3326"/><path d="m0 29 46 27 48-27m-48 27v55" fill="none" stroke="#6d775e" stroke-width="2"/></g></g>
-<g transform="translate(697 88)"><g class="drift delay1" filter="url(#shadow)"><circle cx="47" cy="53" r="47" fill="url(#gold)"/><circle cx="47" cy="53" r="20" fill="#f3f1e6"/><path d="M16 36a36 36 0 0 1 54-15" fill="none" stroke="#fff4a7" stroke-width="3" stroke-linecap="round"/></g></g>
-<g transform="translate(165 368)"><g class="drift delay3" filter="url(#shadow)"><path d="M46 0 95 87H0z" fill="#e7bd1c"/><path d="m46 0 6 69L95 87z" fill="#fbd332"/><path d="m46 0 6 69L0 87z" fill="#fff09c"/></g></g>
-<g transform="translate(704 369)"><g class="drift delay2" filter="url(#shadow)"><path d="M38 0h29v33h33v29H67v33H38V62H5V33h33z" fill="#293226"/></g></g>
-<g class="orbit"><circle cx="480" cy="69" r="7" fill="#69765b"/><circle cx="480" cy="471" r="11" fill="#ffd400"/></g><g transform="translate(829 230) scale(0.55)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#a7b197"/></g><g transform="translate(82 258) scale(0.6)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#758568"/></g></svg>
+
+
+
+
+
+</defs><rect width="960" height="540" fill="#f5eee7"/>
+<circle cx="480" cy="270" r="207" fill="#e9ded4"/>
+<ellipse cx="480" cy="270" rx="332" ry="133" transform="rotate(-17 480 270)" fill="none" stroke="#c0aea3" stroke-width="2.5"/>
+<ellipse cx="480" cy="270" rx="134" ry="219" transform="rotate(-17 480 270)" fill="none" stroke="#dccac0" stroke-width="2.5"/>
+<g stroke="#b5a196" stroke-width="4" fill="none"><path d="M203 142C330 112 334 188 454 246"/><path d="M738 151C630 119 628 205 515 247"/><path d="M216 411C326 442 340 346 453 295"/><path d="M762 407C638 451 620 348 519 296"/></g>
+<g stroke="#a17d77" stroke-width="5" fill="none" stroke-linecap="round"><path d="M203 142C330 112 334 188 454 246" class="stream"/><path d="M738 151C630 119 628 205 515 247" class="stream reverse" style="animation-delay:-2s"/><path d="M216 411C326 442 340 346 453 295" class="stream" style="animation-delay:-4s"/><path d="M762 407C638 451 620 348 519 296" class="stream reverse" style="animation-delay:-6s"/></g>
+<ellipse cx="480" cy="372" rx="85" ry="17" fill="#b19b8d" opacity=".14"/>
+<g class="drift"><circle cx="480" cy="270" r="89" fill="#dec0ad" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="M413 327q69 39 132-16a89 89 0 0 1-132 16Z" fill="#c8a393"/><ellipse cx="480" cy="270" rx="104" ry="39" transform="rotate(-24 480 270)" fill="none" stroke="#7a625d" stroke-width="7"/><ellipse cx="480" cy="270" rx="95" ry="31" transform="rotate(-24 480 270)" fill="none" stroke="#efe0d5" stroke-width="2.5"/><circle cx="454" cy="234" r="16" fill="#f4e5da" opacity=".65"/></g>
+<g transform="translate(157 95)"><g class="drift delay2"><path d="m0 29 45-29 49 29v54l-48 28L0 83z" fill="#a39288" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="m0 29 46 27 48-27m-48 27v55" fill="none" stroke="#78645b" stroke-width="2.5"/></g></g>
+<g transform="translate(697 88)"><g class="drift delay1"><circle cx="47" cy="53" r="47" fill="#dfc0ad" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><circle cx="47" cy="53" r="20" fill="#f5eee7" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 36a36 36 0 0 1 54-15" fill="none" stroke="#f0dfd2" stroke-width="3" stroke-linecap="round"/></g></g>
+<g transform="translate(165 368)"><g class="drift delay3"><path d="M46 0 95 87H0z" fill="#c5a18b" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="m46 0 6 69L95 87z" fill="#dfc0aa" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><path d="m46 0 6 69L0 87z" fill="#f0ddce" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g></g>
+<g transform="translate(704 369)"><g class="drift delay2"><path d="M38 0h29v33h33v29H67v33H38V62H5V33h33z" fill="#987c80" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g></g>
+<g class="orbit"><circle cx="480" cy="69" r="7" fill="#889aaf" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/><circle cx="480" cy="471" r="11" fill="#d9b8a5" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g><g transform="translate(829 230) scale(0.55)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#baa296" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g><g transform="translate(82 258) scale(0.6)"><path d="M20 0l5 13 15 7-15 5-5 15-5-15L0 20l15-7z" fill="#8d7880" stroke="#7d6860" stroke-width="2.5" stroke-linejoin="round"/></g></svg>

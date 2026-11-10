@@ -12,9 +12,9 @@ import { StaticStory } from './StaticStory';
  */
 export function HeroStage() {
   const reducedMotion = usePrefersReducedMotion();
-  const [shortLandscape, setShortLandscape] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 1080px) and (max-height: 600px) and (orientation: landscape)').matches);
+  const [shortLandscape, setShortLandscape] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 1200px) and (max-height: 700px) and (orientation: landscape)').matches);
   useEffect(() => {
-    const query = window.matchMedia('(max-width: 1080px) and (max-height: 600px) and (orientation: landscape)');
+    const query = window.matchMedia('(max-width: 1200px) and (max-height: 700px) and (orientation: landscape)');
     const onChange = () => setShortLandscape(query.matches);
     query.addEventListener('change', onChange);
     return () => query.removeEventListener('change', onChange);
