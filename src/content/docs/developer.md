@@ -16,7 +16,7 @@
 
 ## 源码
 
-当前软件源码暂不开放。待软件完善到预期后，再一次性开源完整源码。
+软件源码已公开：[Pudding 主程序与桥](https://github.com/Pudding-Player/Pudding)和[本站源码](https://github.com/A-Little-AnQi/sleepy-doll-website)均以 GPL-3.0 发布。
 
 ## 反馈渠道
 

@@ -1,26 +1,51 @@
-# Sleepy Doll 官网
+<div align="center">
 
-正式源码目录：`E:\BetterGIProject\sleepy-doll-website`。React + TypeScript + Vite，首页保留滚动舞台，文档使用 Markdown，发布地址为 `/docs` 和 `/docs/<key>`，旧的 `#/docs` 链接仍可使用。公开仓库：https://github.com/A-Little-AnQi/sleepy-doll-website。
+<img src="https://raw.githubusercontent.com/Pudding-Player/Pudding/main/assets/brand/avatar.png" width="72" alt="Pudding" />
 
-## 开发与发布
+# Pudding 官网
 
-需要 Node.js 22.13 或更新版本。`npm ci` 安装依赖，`npm run dev` 开发，`npm run build` 类型检查、构建资源并预渲染首页和文档到 `dist/`。
+[Pudding](https://github.com/Pudding-Player/Pudding) 的官方网站：sleepy-doll.restless-nh3.com。
 
-Vercel 连接本仓库的 main 分支，推送后自动构建发布。`vercel.json` 将 `/api/*` 转发到 Cloudflare Worker，发布信息和 GA4 服务端密钥都留在软件仓库的分发服务中。
+[![License: GPL v3](https://img.shields.io/badge/License-GPL--3.0--only-blue.svg)](LICENSE) ![Platform](https://img.shields.io/badge/Platform-Web-0078D6.svg) ![Language](https://img.shields.io/badge/TypeScript%20%2B%20Vite-orange.svg)
 
-## 替换首页图片
+[访问官网](https://sleepy-doll.restless-nh3.com) · [主程序仓库](https://github.com/Pudding-Player/Pudding) · [使用指南](https://sleepy-doll.restless-nh3.com/docs/guide)
 
-将四张图片放入 `src/assets/previews/`，文件名分别为：
+</div>
 
-- `chat.webp`：对话
-- `tools.webp`：工具与插件
-- `connection.webp`：通用工具连接
-- `timeline.webp`：快捷任务
+## 站点结构
 
-也支持相同名称的 `.png`、`.jpg`、`.jpeg`，优先级依次为 webp、png、jpg、jpeg、svg。现有 SVG 为带动效的概念插画，支持减少动态效果；加入自定义图片后无需改代码。建议比例 16:9，图片完整展示，不裁切。提交并推送即可更新网站。
+React + TypeScript + Vite。首页是滚动舞台动画；文档页由 Markdown 生成，静态发布到 `/docs` 与 `/docs/<key>`，旧的 `#/docs` 链接仍可使用。
 
-## 内容与统计
+## 开发
 
-首页及导航文案在 `src/site.ts`，文档在 `src/content/docs/`。开发者的话和更新安排在 `developer.md`。
+需要 Node.js 22.13 或更新版本：
 
-主下载按钮只读取正式通道，测试通道在下载区提供独立且标明版本的入口，不静默回退。当前 `0.1.0` 是正式版；支持 SemVer 的 Alpha、Beta、RC 后缀，但这些包不能出现在正式通道。只接受 `src/site.ts` 中 `productVersion` 或更新的基础版本，不提供旧的 0.0.1 测试包。软件发布流程更新各自通道清单后，官网的下载链接与版本号自动跟进。官网匿名统计默认开启，记录页面访问与下载点击。不收集对话和模型密钥。
+```powershell
+npm ci
+npm run dev
+npm run build
+```
+
+`npm run build` 执行类型检查、构建资源并预渲染首页和文档到 `dist/`。
+
+## 源码位置
+
+| 内容 | 位置 |
+| --- | --- |
+| 首页与导航文案 | `src/site.ts` |
+| 文档 Markdown（指南、FAQ、更新日志、开发者的话） | `src/content/docs/` |
+| 顶部 4 张场景插画（SVG） | `src/assets/previews/scene-*.svg`，经 `src/stage/Headings.tsx` 引入 |
+| 通用卡 4 张插画（SVG） | `src/assets/previews/`，由 `src/stage/cards.ts` 显式 import |
+| 品牌图标与字标（PNG） | `src/components/brand/` |
+
+首页插画由源码显式引入：调整插画时替换 `src/assets/previews/` 中同名文件并重新构建。现有 SVG 为带动效的概念插画，支持减少动态效果。
+
+## 部署与数据
+
+Vercel 连接本仓库 main 分支，推送后自动构建发布；`vercel.json` 将 `/api/*` 转发到 Cloudflare Worker。发布信息接口与统计服务端密钥维护在[主程序仓库](https://github.com/Pudding-Player/Pudding)的分发服务（`cloudflare/`）。
+
+主下载按钮只读取正式发布通道；软件发布流程更新通道清单后，官网的下载链接与版本号自动跟进，测试通道在下载区提供独立且标明版本的入口，不静默回退。站点匿名统计默认开启，记录页面访问与下载点击，不收集对话和模型密钥。
+
+## 许可
+
+本仓库以 [GNU GPL v3.0（GPL-3.0-only）](LICENSE) 发布，Copyright © 2026 Pudding contributors。第三方依赖、商标和外部素材遵循各自许可与使用条件。
