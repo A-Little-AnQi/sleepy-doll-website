@@ -165,16 +165,6 @@ svg {
   color: var(--ink);
 }
 
-.nav__link.is-open::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
-  background: var(--accent);
-}
-
 .nav__right {
   display: flex;
   align-items: center;
@@ -691,6 +681,7 @@ svg {
 /* ---------------- 结尾区 ---------------- */
 
 .ending {
+  scroll-margin-top: 80px;
   min-height: 78svh;
   background: var(--scene);
   display: flex;
@@ -868,7 +859,7 @@ svg {
 
 /* ---------------- 响应式 ---------------- */
 
-@media (max-width: 1080px), (hover: none) and (pointer: coarse) {
+@media (max-width: 760px) {
   .nav__links,
   .nav__cta {
     display: none;
@@ -1307,14 +1298,10 @@ svg {
 }
 @media (max-width: 1080px) and (max-height: 600px) and (orientation: landscape) {
   .static-story__chapter { grid-template-columns: 1fr; }
-  .static-story { padding-top: 104px; gap: 72px; }
+  .static-story { gap: 72px; }
   .static-hero { padding-top: 0; }
   .nav-overlay { padding-top: 78px; }
   .nav-overlay__link { font-size: 24px; line-height: 1.4; padding-block: 7px; }
-}
-
-@media (max-width: 1080px), (hover: none) and (pointer: coarse) {
-  .desktop-download, .ending { display: none !important; }
 }
 
 .nav__menu-btn[aria-expanded="true"] .nav__menu-icon i:first-child { transform: translateY(4px) rotate(45deg); }
@@ -1502,12 +1489,15 @@ svg {
     grid-template-rows: auto auto;
     align-items: start;
     align-content: start;
-    gap: clamp(24px, 4vh, 40px);
-    padding-top: clamp(88px, 13vh, 120px);
+    gap: clamp(20px, 3vh, 32px);
+    padding-top: clamp(94px, 12vh, 112px);
+    padding-bottom: clamp(24px, 4vh, 36px);
   }
+  .static-story { padding-top: 0; }
+  .static-hero .hero-title__text { margin: 0; }
   .hero-copy {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       "eyebrow eyebrow"
       "title sub"
@@ -1523,6 +1513,10 @@ svg {
   .hero-sub { grid-area: sub; margin-bottom: 0; }
   .hero-actions { grid-area: actions; }
   .hero-carousel { --orbit-size: clamp(300px, 34vw, 400px); }
+}
+/* 900–1200 短屏：压缩轨道环尺寸，保证 960x540 首屏轮播可见 */
+@media (min-width: 900px) and (max-width: 1200px) and (max-height: 600px) {
+  .hero-carousel { --orbit-size: clamp(290px, 31vw, 340px); }
 }
 /* 手机：文案单列，大图满宽不隐藏，轨道环换为一行缩略按钮 */
 @media (max-width: 760px) {
@@ -1545,12 +1539,16 @@ svg {
   .hero-layout .hero-title__wordmark { max-width: 260px; }
   .hero-carousel {
     grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    justify-self: center;
   }
   .hero-carousel__orbit { display: none; }
+  .static-story { padding-inline: 0; }
+  .static-story__chapter { padding-inline: 6vw; }
   .hero-carousel__rail {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 64px));
     justify-content: center;
-    flex-wrap: wrap;
     gap: 12px;
   }
   .hero-carousel__rail-btn {
@@ -1564,7 +1562,8 @@ svg {
   }
   .hero-carousel__rail-btn img {
     display: block;
-    width: 52px;
+    width: 100%;
+    max-width: 52px;
     height: auto;
     aspect-ratio: 1; /* 正方形真实图标，按钮触控区含 padding 已超 44px */
     object-fit: contain;

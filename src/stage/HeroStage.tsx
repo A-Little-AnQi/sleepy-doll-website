@@ -5,6 +5,12 @@ import { Headings } from './Headings';
 import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 import { StaticStory } from './StaticStory';
 
+/** 首屏空间不足时改用自然滚动的静态章节，保障 CTA 与轮播可达。 */
+const compactViewportQuery = [
+  '(max-width: 1200px) and (max-height: 700px) and (orientation: landscape)',
+  '(max-width: 760px) and (max-height: 800px)',
+].join(', ');
+
 /**
  * 主叙事舞台：滚动容器 + position:sticky 整屏舞台。
  * 进度由 motion 的 useScroll 归一化，ThreeHelixStage 阻尼后回写 damped，
@@ -12,14 +18,14 @@ import { StaticStory } from './StaticStory';
  */
 export function HeroStage() {
   const reducedMotion = usePrefersReducedMotion();
-  const [shortLandscape, setShortLandscape] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 1200px) and (max-height: 700px) and (orientation: landscape)').matches);
+  const [compactViewport, setCompactViewport] = useState(() => typeof window !== 'undefined' && window.matchMedia(compactViewportQuery).matches);
   useEffect(() => {
-    const query = window.matchMedia('(max-width: 1200px) and (max-height: 700px) and (orientation: landscape)');
-    const onChange = () => setShortLandscape(query.matches);
+    const query = window.matchMedia(compactViewportQuery);
+    const onChange = () => setCompactViewport(query.matches);
     query.addEventListener('change', onChange);
     return () => query.removeEventListener('change', onChange);
   }, []);
-  return reducedMotion || shortLandscape ? <StaticStory /> : <AnimatedHeroStage />;
+  return reducedMotion || compactViewport ? <StaticStory /> : <AnimatedHeroStage />;
 }
 
 function AnimatedHeroStage() {

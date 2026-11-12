@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-export const mobileQuery = '(max-width: 1080px), (hover: none) and (pointer: coarse)';
+/** 760px 断点只管导航折叠，不影响版本请求与下载入口。 */
+export const mobileQuery = '(max-width: 760px)';
 export function useMobileLayout() {
   const [mobile, setMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia(mobileQuery).matches);
   useEffect(() => {

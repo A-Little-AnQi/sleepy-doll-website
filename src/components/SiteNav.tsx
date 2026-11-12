@@ -17,7 +17,7 @@ import { useMobileLayout } from '../useMobileLayout';
  * 桌面端悬停/聚焦/点击带目录的项时，在导航下方呼出深色页面目录：
  * 顶部为变换原点 scaleY(.82)→1 折线裁切展开，背景同步淡入全屏模糊遮罩，
  * 链接逐项 y=18px 错落进入，悬停右移 16px；离开导航区域或 Escape 关闭。
- * 1080px 以下折叠为全屏深色菜单（opacity + clip-path 自上而下展开）。
+ * 760px 以下折叠为全屏深色菜单（opacity + clip-path 自上而下展开）。
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -141,7 +141,7 @@ export function SiteNav() {
           {navEntries.map((entry) => (
             <a
               key={entry.label}
-              className={`nav__link ${entry.label === '下载' ? 'desktop-download' : ''} ${entry.directory && openDirectory === entry ? 'is-open' : ''}`}
+              className={`nav__link ${entry.directory && openDirectory === entry ? 'is-open' : ''}`}
               href={entry.href}
               aria-haspopup={entry.directory ? 'true' : undefined}
               aria-expanded={entry.directory ? (openDirectory === entry ? 'true' : 'false') : undefined}
@@ -243,7 +243,7 @@ export function SiteNav() {
         inert={!mobileOpen}
       >
         <nav className="nav-overlay__menu" aria-label="站点导航">
-          {navEntries.filter(entry => entry.label !== '下载').map((entry, i) => (
+          {navEntries.map((entry, i) => (
             <a
               key={entry.label}
               ref={i === 0 ? firstMobileLinkRef : undefined}

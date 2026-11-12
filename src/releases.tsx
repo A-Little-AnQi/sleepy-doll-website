@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { productVersion } from './site';
 import { currentRoute, navigationEvent } from './routing';
-import { useMobileLayout } from './useMobileLayout';
 import { channelReleases, type Release } from './releasePolicy';
 export type { Release } from './releasePolicy';
 
@@ -11,11 +10,9 @@ const ReleaseContext = createContext<ReleaseState>({ ...emptyRelease, loading: t
 const sessionId = Math.floor(Date.now() / 1000);
 
 export function ReleaseProvider({ children }: { children: ReactNode }) {
-  const mobile = useMobileLayout();
   const [state, setState] = useState<ReleaseState>({ ...emptyRelease, loading: true });
+  // 窗口尺寸变化时保留已取得的版本信息。
   useEffect(() => {
-    if (mobile) { setState({ ...emptyRelease, loading: false }); return; }
-    setState({ ...emptyRelease, loading: true });
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), 15000);
     let active = true;
@@ -31,7 +28,7 @@ export function ReleaseProvider({ children }: { children: ReactNode }) {
     })().catch(() => { if (active) setState({ ...emptyRelease, loading: false }); })
       .finally(() => window.clearTimeout(timer));
     return () => { active = false; controller.abort(); window.clearTimeout(timer); };
-  }, [mobile]);
+  }, []);
   return <ReleaseContext.Provider value={state}>{children}</ReleaseContext.Provider>;
 }
 export function useRelease() { return useContext(ReleaseContext); }
@@ -55,13 +52,11 @@ export function recordEvent(event: 'page_view' | 'download_click', release: Rele
 
 export function DownloadButton({ className, label }: { className?: string; label?: string }) {
   const { release, loading } = useRelease();
-  const mobile = useMobileLayout();
-  if (mobile) return null;
-  if (!release) return <button className={`${className ?? ''} desktop-download`} type="button" disabled
+  if (!release) return <button className={className} type="button" disabled
     title={loading ? undefined : '暂未获取到可用安装包信息'}>
     {loading ? '获取下载信息…' : '下载暂不可用'}
   </button>;
-  return <a className={`${className ?? ''} desktop-download`} href={downloadHref(release)} onClick={() => recordEvent('download_click', release)}>
+  return <a className={className} href={downloadHref(release)} onClick={() => recordEvent('download_click', release)}>
     下载 Windows 版{label?.includes('↗') ? ' ↗' : ''}
   </a>;
 }
