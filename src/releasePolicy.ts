@@ -28,9 +28,12 @@ export function acceptedRelease(value: unknown, channel: 'stable' | 'test'): Rel
   }
   try {
     const url = new URL(item.url);
+    const installerPaths = ['Pudding', 'Sleepy-Doll'].map(
+      product => `/releases/${item.version}/${product}-${item.version}-setup.exe`,
+    );
     if (url.protocol !== 'https:' || url.username || url.password || url.port || url.search || url.hash
       || url.hostname !== 'sleepy-doll-download.restless-nh3.com'
-      || url.pathname !== `/releases/${item.version}/Sleepy-Doll-${item.version}-setup.exe`) return null;
+      || !installerPaths.includes(url.pathname)) return null;
   } catch { return null; }
   return item as Release;
 }
